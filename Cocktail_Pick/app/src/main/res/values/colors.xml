@@ -14,5 +14,7 @@
     <color name="third_cocktail">#ffed891f</color>
     <color name="fourth_cocktail">#ff0c631b</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="red">#FFED1313</color>
+    <color name="green">#FF00691C</color>
 
 </resources>
