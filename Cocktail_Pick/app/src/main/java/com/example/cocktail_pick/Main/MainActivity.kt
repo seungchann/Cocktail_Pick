@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cocktail_pick.R
+import com.example.cocktail_pick.RecommendTab.RecommendTabFragment
 import com.example.cocktail_pick.RetrofitService
 import com.example.cocktail_pick.SearchTab.SearchTabFragment
 import com.example.cocktail_pick.databinding.ActivityMainBinding
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.constraintLayout, SearchTabFragment())
+            .add(R.id.constraintLayout, RecommendTabFragment())
             .commit()
 
         /*
