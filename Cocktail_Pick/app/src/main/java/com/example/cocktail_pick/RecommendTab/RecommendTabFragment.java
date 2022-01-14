@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class RecommendTabFragment extends Fragment {
     ViewPager2 viewPager;
     ArrayList<Cocktail> cocktails;
+    RecommendViewPagerAdapter buying_adapter;
     Button addBtn, removeBtn;
 
     @Nullable
@@ -29,7 +30,8 @@ public class RecommendTabFragment extends Fragment {
 
         initCocktails();
         viewPager = rootView.findViewById(R.id.buy_view_pager);
-        viewPager.setAdapter(new RecommendViewPagerAdapter(getActivity(), cocktails));
+        buying_adapter = new RecommendViewPagerAdapter(getActivity(), cocktails);
+        viewPager.setAdapter(buying_adapter);
 
         addBtn = rootView.findViewById(R.id.add_buying_btn);
         removeBtn = rootView.findViewById(R.id.remove_buying_btn);
@@ -44,7 +46,8 @@ public class RecommendTabFragment extends Fragment {
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                buying_adapter.cancel_flag = !buying_adapter.cancel_flag;
+                buying_adapter.notifyDataSetChanged();
             }
         });
 
