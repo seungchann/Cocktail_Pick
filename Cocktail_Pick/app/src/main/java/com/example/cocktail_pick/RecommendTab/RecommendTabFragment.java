@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,20 +15,38 @@ import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;
 
-public class RecommentTabFragment extends Fragment {
+public class RecommendTabFragment extends Fragment {
     ViewPager2 viewPager;
     ArrayList<Cocktail> cocktails;
+    Button addBtn, removeBtn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_search, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_recommend, container, false);
 
         initCocktails();
         viewPager = rootView.findViewById(R.id.buy_view_pager);
         viewPager.setAdapter(new RecommendViewPagerAdapter(getActivity(), cocktails));
+
+        addBtn = rootView.findViewById(R.id.add_buying_btn);
+        removeBtn = rootView.findViewById(R.id.remove_buying_btn);
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        removeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
 
 
         return rootView;
@@ -35,6 +54,9 @@ public class RecommentTabFragment extends Fragment {
 
     void initCocktails() {
         cocktails = new ArrayList<>();
-        cocktails.add(new Cocktail("잭 다니엘", ""));
+
+        for (int i = 0; i < 10; i++) {
+            cocktails.add(new Cocktail("잭 다니엘", ""));
+        }
     }
 }
