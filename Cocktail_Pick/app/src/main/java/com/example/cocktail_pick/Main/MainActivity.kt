@@ -3,10 +3,12 @@ package com.example.cocktail_pick.Main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RetrofitService
+import com.example.cocktail_pick.SearchTab.SearchTabFragment
 import com.example.cocktail_pick.databinding.ActivityMainBinding
 
 
@@ -26,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.constraintLayout, SearchTabFragment())
+            .commit()
 
         /*
         viewModel = ViewModelProvider(this, MainViewModelFactory(MainRepository(retrofitService))).get(MainViewModel::class.java)

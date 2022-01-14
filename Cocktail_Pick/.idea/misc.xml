@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/drawable/circle.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/font/custom_font.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_tag.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/test.xml" value="0.21197916666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
