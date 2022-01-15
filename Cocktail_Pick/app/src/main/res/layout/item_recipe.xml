@@ -39,7 +39,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="호불호가 없는 재료들이기 때문에 모두가 좋아할 것 같다. 파인애플이 생각보다 비싸지 않아서"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:maxLines="3"
+                    android:ellipsize="end"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -94,7 +96,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="호불호가 없는 재료들이기 때문에 모두가 좋아할 것 같다. 파인애플이 생각보다 비싸지 않아서"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:maxLines="3"
+                    android:ellipsize="end"/>
             </LinearLayout>
 
         </LinearLayout>
