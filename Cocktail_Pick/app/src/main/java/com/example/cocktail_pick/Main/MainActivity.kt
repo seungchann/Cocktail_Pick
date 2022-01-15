@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     lateinit var tab2: SearchTabFragment
+    lateinit var tab3: RecommendTabFragment
 
     /*
     lateinit var viewModel: MainViewModel
@@ -36,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         tab2 = SearchTabFragment()
+        tab3 = RecommendTabFragment()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.main_fragment_layout, tab2)
-//             .add(R.id.constraintLayout, RecommendTabFragment())
             .commit()
 
         main_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 when(tab?.position) {
                     0 -> { }
                     1 -> { replaceView(tab2) }
-                    2 -> { }
+                    2 -> { replaceView(tab3) }
                     3 -> { }
                 }
             }
@@ -61,7 +62,10 @@ class MainActivity : AppCompatActivity() {
                         tab2 = SearchTabFragment()
                         replaceView(tab2)
                     }
-                    2 -> { }
+                    2 -> {
+                        tab3 = RecommendTabFragment()
+                        replaceView(tab3)
+                    }
                 }
 
             }
