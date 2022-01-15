@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Data.Cocktail;
 import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
             Cocktail cocktail = cocktails.get(this_pos);
 
             holder.images[i].setImageResource(R.drawable.jack_danial);
-            holder.texts[i].setText(cocktail.name);
+            holder.texts[i].setText(cocktail.getName());
 
             holder.cancel_view[i].setVisibility(View.INVISIBLE);
             holder.item_buys[i].clearAnimation();
@@ -100,29 +100,6 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
                 cancel_btn[i] = (ImageButton) itemView.findViewById(context.getResources().getIdentifier("cancel_button" + (i+1), "id", context.getPackageName()));
                 cancel_view[i] = (CardView) itemView.findViewById(context.getResources().getIdentifier("cancel" + (i+1), "id", context.getPackageName()));
             }
-
-            /*
-            images[0] = (ImageView) itemView.findViewById(R.id.buy_image1);
-            images[1] = (ImageView) itemView.findViewById(R.id.buy_image2);
-            images[2] = (ImageView) itemView.findViewById(R.id.buy_image3);
-            images[3] = (ImageView) itemView.findViewById(R.id.buy_image4);
-            images[4] = (ImageView) itemView.findViewById(R.id.buy_image5);
-            images[5] = (ImageView) itemView.findViewById(R.id.buy_image6);
-
-            texts[0] = (TextView) itemView.findViewById(R.id.buy_text1);
-            texts[1] = (TextView) itemView.findViewById(R.id.buy_text2);
-            texts[2]= (TextView) itemView.findViewById(R.id.buy_text3);
-            texts[3] = (TextView) itemView.findViewById(R.id.buy_text4);
-            texts[4] = (TextView) itemView.findViewById(R.id.buy_text5);
-            texts[5] = (TextView) itemView.findViewById(R.id.buy_text6);
-
-            item_buys[0] = (LinearLayout) itemView.findViewById(R.id.item_buy1);
-            item_buys[1] = (LinearLayout) itemView.findViewById(R.id.item_buy2);
-            item_buys[2] = (LinearLayout) itemView.findViewById(R.id.item_buy3);
-            item_buys[3] = (LinearLayout) itemView.findViewById(R.id.item_buy4);
-            item_buys[4] = (LinearLayout) itemView.findViewById(R.id.item_buy5);
-            item_buys[5] = (LinearLayout) itemView.findViewById(R.id.item_buy6);
-*/
         }
     }
 }

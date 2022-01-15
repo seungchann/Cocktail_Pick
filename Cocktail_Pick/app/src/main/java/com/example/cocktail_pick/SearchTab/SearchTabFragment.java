@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.SearchTab.CustomSuggestionsAdapter;
 import com.mancj.materialsearchbar.MaterialSearchBar;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchTabFragment extends Fragment {
-
-
     private CustomSuggestionsAdapter customSuggestionsAdapter;
     private MaterialSearchBar searchBar;
     private List<Product> suggestions = new ArrayList<>();
@@ -54,9 +53,9 @@ public class SearchTabFragment extends Fragment {
             color = Color.valueOf(0, 0, 0);
         }
     }
-
     ArrayList<Tag> tags;
     RecyclerView recyclerView;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -101,6 +100,7 @@ public class SearchTabFragment extends Fragment {
         return rootView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     void init_tag() {
         tags = new ArrayList<>();
 

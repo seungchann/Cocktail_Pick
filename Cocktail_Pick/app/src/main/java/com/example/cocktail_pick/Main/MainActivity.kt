@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.cocktail_pick.HomeTab.HomeFragment
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RecommendTab.RecommendTabFragment
 import com.example.cocktail_pick.RetrofitService
