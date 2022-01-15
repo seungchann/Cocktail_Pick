@@ -1,9 +1,12 @@
 package com.example.cocktail_pick.Main
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.cocktail_pick.HomeTab.HomeTabFragment
+import com.example.cocktail_pick.MyPageTab.MyPageTabFragment
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RecommendTab.RecommendTabFragment
 import com.example.cocktail_pick.SearchTab.SearchTabFragment
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tab1: HomeTabFragment
     lateinit var tab2: SearchTabFragment
     lateinit var tab3: RecommendTabFragment
+    lateinit var tab4: MyPageTabFragment
 
     /*
     lateinit var viewModel: MainViewModel
@@ -36,9 +40,10 @@ class MainActivity : AppCompatActivity() {
         tab1 = HomeTabFragment()
         tab2 = SearchTabFragment()
         tab3 = RecommendTabFragment()
+        tab4 = MyPageTabFragment()
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_fragment_layout, tab2)
+            .add(R.id.main_fragment_layout, tab1)
             .commit()
 
         main_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -47,12 +52,13 @@ class MainActivity : AppCompatActivity() {
                     0 -> { replaceView(tab1) }
                     1 -> { replaceView(tab2) }
                     2 -> { replaceView(tab3) }
-                    3 -> { }
+                    3 -> { replaceView(tab4) }
                 }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) { }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
                     0 -> {
@@ -66,6 +72,10 @@ class MainActivity : AppCompatActivity() {
                     2 -> {
                         tab3 = RecommendTabFragment()
                         replaceView(tab3)
+                    }
+                    3 -> {
+                        tab4 = MyPageTabFragment()
+                        replaceView(tab4)
                     }
                 }
 
