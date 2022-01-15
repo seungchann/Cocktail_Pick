@@ -2,15 +2,10 @@ package com.example.cocktail_pick.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.cocktail_pick.HomeTab.HomeFragment
+import com.example.cocktail_pick.HomeTab.HomeTabFragment
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RecommendTab.RecommendTabFragment
-import com.example.cocktail_pick.RetrofitService
 import com.example.cocktail_pick.SearchTab.SearchTabFragment
 import com.example.cocktail_pick.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -23,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    lateinit var tab1: HomeTabFragment
     lateinit var tab2: SearchTabFragment
     lateinit var tab3: RecommendTabFragment
 
@@ -37,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        tab1 = HomeTabFragment()
         tab2 = SearchTabFragment()
         tab3 = RecommendTabFragment()
 
@@ -47,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         main_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
-                    0 -> { }
+                    0 -> { replaceView(tab1) }
                     1 -> { replaceView(tab2) }
                     2 -> { replaceView(tab3) }
                     3 -> { }
@@ -58,7 +55,10 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
-                    0 -> { }
+                    0 -> {
+                        tab1 = HomeTabFragment()
+                        replaceView(tab1)
+                    }
                     1 -> {
                         tab2 = SearchTabFragment()
                         replaceView(tab2)
