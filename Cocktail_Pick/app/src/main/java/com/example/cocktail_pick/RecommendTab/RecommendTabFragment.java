@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.cocktail_pick.Data.Cocktail;
 import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;

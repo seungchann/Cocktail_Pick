@@ -14,25 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;
 
 public class SearchTabFragment extends Fragment {
 
-    public class Tag {
-        String taste;
-        Color color;
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        Tag() {
-            taste = "달달한";
-            color = Color.valueOf(0, 0, 0);
-        }
-    }
-
     ArrayList<Tag> tags;
     RecyclerView recyclerView;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +40,7 @@ public class SearchTabFragment extends Fragment {
         return rootView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     void init_tag() {
         tags = new ArrayList<>();
 
