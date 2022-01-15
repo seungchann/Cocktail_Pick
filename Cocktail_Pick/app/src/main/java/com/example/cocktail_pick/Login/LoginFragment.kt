@@ -6,21 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import com.example.cocktail_pick.MainRepository
 import com.example.cocktail_pick.Member
 import com.example.cocktail_pick.R
+import com.example.cocktail_pick.RetrofitService
 import com.example.cocktail_pick.databinding.FragmentLoginBinding
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
+import java.lang.IllegalStateException
 
 class LoginFragment : Fragment() {
 
     private val TAG = "LoginFragment"
+    private val retrofitService = RetrofitService.getInstance()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: LoginViewModel
     private lateinit var mCallback: (OAuthToken?, Throwable?) -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +39,9 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(getViewModelStoreOwner(), LoginViewModelFactory(MainRepository(retrofitService))).get(LoginViewModel::class.java)
+
         makeKakaoCallback()
         binding.kakaoButton.setOnClickListener {
             checkKakaoLogin()
@@ -45,6 +53,12 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun Fragment.getViewModelStoreOwner(): ViewModelStoreOwner = try {
+        requireActivity()
+    } catch (e: IllegalStateException) {
+        this
     }
 
     private fun makeKakaoCallback() {
@@ -98,6 +112,8 @@ class LoginFragment : Fragment() {
         val newMember = Member(user.kakaoAccount?.profile?.nickname ?: "user",
             user.kakaoAccount?.email ?: "@.",
             user.kakaoAccount?.profile?.thumbnailImageUrl ?: "")
+
+        this.viewModel.currentUser = newMember
 
         (activity as LoginActivity).moveToMainActivity()
     }

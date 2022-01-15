@@ -2,6 +2,7 @@ package com.example.cocktail_pick.Main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cocktail_pick.MainRepository
 import java.lang.IllegalArgumentException
 
 class MainViewModelFactory constructor(private val repository: MainRepository) : ViewModelProvider.Factory {

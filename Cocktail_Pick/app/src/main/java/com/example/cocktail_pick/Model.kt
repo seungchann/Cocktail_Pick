@@ -9,4 +9,4 @@ data class Member (
     var email: String,
     @SerializedName("profile_image_url")
     var profileImageURL: String
-)
+): Serializable
