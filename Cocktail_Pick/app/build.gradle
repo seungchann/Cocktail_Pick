@@ -49,6 +49,10 @@ dependencies {
 
     // MaterialSearchBar
     implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
+    implementation 'com.github.kanytu:android-parallax-recyclerview:v1.7'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
+    implementation 'com.github.didikk:sticky-nestedscrollview:1.0.1'
 
     // Kakao Login
     implementation "com.kakao.sdk:v2-user:2.8.4" // 카카오 로그인

@@ -1,6 +1,7 @@
 package com.example.cocktail_pick.SearchTab;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
 
 import java.lang.reflect.Array;
@@ -19,9 +22,9 @@ import java.util.ArrayList;
 
 public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.ViewHolder> {
 
-    ArrayList<SearchTabFragment.Tag> tags;
+    ArrayList<Tag> tags;
     Context context;
-    public SearchTabAdapter(Context context, ArrayList<SearchTabFragment.Tag> tags) {
+    public SearchTabAdapter(Context context, ArrayList<Tag> tags) {
         this.tags = tags;
         this.context = context;
 
@@ -39,8 +42,9 @@ public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // holder.circle1
 
-        SearchTabFragment.Tag tag = tags.get(position*2);
-        holder.tag1.setText(tag.taste);
+        Tag tag = tags.get(position*2);
+        holder.tag1.setText(tag.getTaste());
+        holder.circle1.setColorFilter(R.color.red, PorterDuff.Mode.MULTIPLY);
         if (tags.size()-1 == position*2) {
             holder.card2.setVisibility(View.INVISIBLE);
             return;
@@ -48,7 +52,8 @@ public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.View
 
         tag = tags.get(position*2+1);
         //holder.circle1.set
-        holder.tag2.setText(tag.taste);
+        holder.tag2.setText(tag.getTaste());
+        holder.circle2.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
