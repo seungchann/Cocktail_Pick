@@ -16,10 +16,14 @@
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_bought_view_pager.xml" value="0.33" />
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_recipe.xml" value="0.33" />
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_tag.xml" value="0.67" />
-        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_tag_small.xml" value="1.0" />
-        <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/test.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3496376811594203" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23058246491027237" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.30950570342205325" />
+        <entry key="app/src/main/res/layout/fragment_recommend.xml" value="0.2125" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_tag.xml" value="0.2125" />
+        <entry key="app/src/main/res/layout/item_bought_view_pager.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/item_suggestion.xml" value="0.4316121162397411" />
         <entry key="app/src/main/res/layout/test.xml" value="0.21197916666666666" />
       </map>
     </option>

@@ -1,4 +1,4 @@
-package com.example.cocktail_pick.Main
+package com.example.cocktail_pick
 
 import com.example.cocktail_pick.RetrofitService
 

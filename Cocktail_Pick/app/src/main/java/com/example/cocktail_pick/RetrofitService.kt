@@ -8,10 +8,11 @@ import retrofit2.http.GET
 interface RetrofitService {
 
 
-    /*
-    @GET("/{test}")
-    fun getAllData(): Call<List<Int>>
-     */
+/*
+    @GET("/juice/")
+    fun getAllJuice(): Call<List<Int>>
+
+ */
 
     companion object {
         var retrofitService: RetrofitService? = null
@@ -20,7 +21,7 @@ interface RetrofitService {
 
             if(retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    .baseUrl("URL")
+                    .baseUrl("http://192.249.18.191:80")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(RetrofitService::class.java)
