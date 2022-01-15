@@ -20,7 +20,7 @@ import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeTabFragment extends Fragment {
     RecyclerView recyclerView;
     ImageView profileImage;
     TextView profileName;
