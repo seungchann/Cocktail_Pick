@@ -1,11 +1,13 @@
-package com.example.cocktail_pick.Main
+package com.example.cocktail_pick.Login
 
 import androidx.lifecycle.ViewModel
 import com.example.cocktail_pick.MainRepository
+import com.example.cocktail_pick.Member
 
-class MainViewModel constructor(private val repository: MainRepository) : ViewModel() {
+class LoginViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
-    private val TAG = "MainViewModel"
+    private val TAG = "LoginViewModel"
+    lateinit var currentUser: Member
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -23,5 +25,4 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
         })
     }
      */
-
 }

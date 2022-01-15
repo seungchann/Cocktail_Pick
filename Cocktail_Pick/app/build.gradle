@@ -30,8 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -47,8 +47,20 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
 
+    // MaterialSearchBar
     implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
     implementation 'com.github.kanytu:android-parallax-recyclerview:v1.7'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
+    implementation 'com.github.didikk:sticky-nestedscrollview:1.0.1'
+
+    // Kakao Login
+    implementation "com.kakao.sdk:v2-user:2.8.4" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.8.4" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.8.4" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.8.4" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.8.4"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'// 카카오내비
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

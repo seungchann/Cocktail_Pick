@@ -94,7 +94,7 @@ public class SearchTabFragment extends Fragment {
     void init_tag() {
         tags = new ArrayList<>();
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 30; i++) {
             tags.add(new Tag());
         }
 
