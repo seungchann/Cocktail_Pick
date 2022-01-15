@@ -20,7 +20,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/taste_color"
+                android:src="@drawable/circle"
                 android:layout_gravity="center_vertical"
                 android:scaleType="fitCenter"/>
             <androidx.appcompat.widget.AppCompatButton

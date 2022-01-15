@@ -43,16 +43,6 @@ public class SearchTabFragment extends Fragment {
             "Albumin Human"
     };
 
-    public class Tag {
-        String taste;
-        Color color;
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        Tag() {
-            taste = "달달한";
-            color = Color.valueOf(0, 0, 0);
-        }
-    }
     ArrayList<Tag> tags;
     RecyclerView recyclerView;
     @RequiresApi(api = Build.VERSION_CODES.O)
