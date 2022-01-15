@@ -12,13 +12,14 @@
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_bought_view_pager.xml" value="0.33" />
         <entry key="..\:/Users/pc/Desktop/FlowCamp/Cocktail_Pick/Cocktail_Pick/app/src/main/res/layout/item_tag.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3496376811594203" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23058246491027237" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_suggestion.xml" value="0.4316121162397411" />
         <entry key="app/src/main/res/layout/test.xml" value="0.21197916666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
