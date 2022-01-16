@@ -8,16 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.cocktail_pick.MainRepository
-import com.example.cocktail_pick.Member
-import com.example.cocktail_pick.R
-import com.example.cocktail_pick.RetrofitService
+import com.example.cocktail_pick.*
 import com.example.cocktail_pick.databinding.FragmentLoginBinding
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.lang.IllegalStateException
 
 class LoginFragment : Fragment() {
@@ -111,10 +110,16 @@ class LoginFragment : Fragment() {
 
         val newMember = Member(user.kakaoAccount?.profile?.nickname ?: "user",
             user.kakaoAccount?.email ?: "@.",
-            user.kakaoAccount?.profile?.thumbnailImageUrl ?: "")
+             user.kakaoAccount?.profile?.thumbnailImageUrl ?: "null",
+        )
 
-        this.viewModel.currentUser = newMember
+        viewModel.checkUserAccount((activity as LoginActivity), newMember)
 
-        (activity as LoginActivity).moveToMainActivity()
+
+//        if(viewModel.hasUserAccount) {
+//            (activity as LoginActivity).moveToMainActivity()
+//        } else {
+//            viewModel.addMember(newMember)
+//        }
     }
 }

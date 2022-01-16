@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.cocktail_pick.Main.MainActivity
 import com.example.cocktail_pick.MainRepository
-import com.example.cocktail_pick.Member
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RetrofitService
 import com.kakao.sdk.auth.AuthApiClient

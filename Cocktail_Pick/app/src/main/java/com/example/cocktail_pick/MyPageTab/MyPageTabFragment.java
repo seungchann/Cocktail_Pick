@@ -16,15 +16,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.User;
 import com.example.cocktail_pick.HomeTab.RecipeTagAdapter;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.User;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MyPageTabFragment extends Fragment {
     RecyclerView my_tag_recycler_view;
-    User my_user = new User();
+    List<String> testTagList = new ArrayList<>();
+    User my_user = new User("@.","user","", testTagList);
     CartFragment cartFragment;
     MyRecipeFragment myRecipeFragment;
 
@@ -42,7 +46,7 @@ public class MyPageTabFragment extends Fragment {
                 my_tag_recycler_view.smoothScrollBy(0, 800);
             }
         });
-        my_tag_recycler_view.setAdapter(new RecipeTagAdapter(getActivity(), my_user.getTags()));
+        my_tag_recycler_view.setAdapter(new RecipeTagAdapter(getActivity()));
 
         cartFragment = new CartFragment();
         myRecipeFragment = new MyRecipeFragment();

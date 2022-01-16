@@ -21,6 +21,12 @@ public class RecipeTagAdapter extends RecyclerView.Adapter<RecipeTagAdapter.View
     Context context;
     ArrayList<Tag> tags;
 
+    public RecipeTagAdapter(Context context) {
+        this.context = context;
+        ArrayList<Tag> testTagList = new ArrayList<>();
+        this.tags = testTagList;
+    }
+
     public RecipeTagAdapter(Context context, ArrayList<Tag> tags) {
         this.context = context;
         this.tags = tags;
