@@ -44,4 +44,11 @@ class LoginActivity : AppCompatActivity() {
         val nextIntent = Intent(this, MainActivity::class.java)
         startActivity(nextIntent)
     }
+
+    fun moveToTagFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.login_frame_layout, TagFragment())
+            .addToBackStack(null)
+            .commit()
+    }
 }

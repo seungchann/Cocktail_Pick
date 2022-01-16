@@ -1,6 +1,5 @@
 package com.example.cocktail_pick.SearchTab;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,9 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
-import com.example.cocktail_pick.SearchTab.CustomSuggestionsAdapter;
+import com.example.cocktail_pick.Tag;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -95,7 +93,7 @@ public class SearchTabFragment extends Fragment {
         tags = new ArrayList<>();
 
         for (int i = 0; i < 30; i++) {
-            tags.add(new Tag());
+//            tags.add(new Tag());
         }
 
     }
