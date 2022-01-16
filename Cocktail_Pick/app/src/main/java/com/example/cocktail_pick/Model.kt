@@ -23,3 +23,9 @@ data class Member (
     @SerializedName("profile_url")
     var profileURL: String,
 ): Serializable
+
+data class Tag (
+    var color: String,
+    var taste: String,
+): Serializable
+

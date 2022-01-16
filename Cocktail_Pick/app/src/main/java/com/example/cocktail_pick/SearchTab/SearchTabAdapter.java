@@ -5,7 +5,6 @@ import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Tag;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.ViewHolder> {
