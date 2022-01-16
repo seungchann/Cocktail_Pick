@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cocktail_pick.Data.Cocktail;
-import com.example.cocktail_pick.Data.Recipe;
 import com.example.cocktail_pick.HomeTab.SummaryAdapter;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Recipe;
 
 import java.util.ArrayList;
 
@@ -85,7 +85,7 @@ public class RecommendTabFragment extends Fragment {
     void initRecommendRecipes() {
         recommendRecipes = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            recommendRecipes.add(new Recipe());
+//            recommendRecipes.add(new Recipe());
         }
     }
 }
