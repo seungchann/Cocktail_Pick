@@ -12,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Recipe;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Recipe;
+
 import java.util.ArrayList;
 
 public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHolder> {
@@ -37,11 +38,11 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipes.get(position*2);
-        holder.summary_recipe_name1.setText(recipe.getTitle());
+        holder.summary_recipe_name1.setText(recipe.getCocktailName());
         holder.summary_image1.setImageResource(R.drawable.jack_danial); // TODO
-        holder.summary_review1.setText(recipe.getReview());
+        holder.summary_review1.setText(recipe.getIntro());
         holder.summary_tag_recycler_view1.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+//        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
 
         if (recipes.size()-1 == position*2) {
             holder.item_recipe2.setVisibility(View.INVISIBLE);
@@ -49,11 +50,11 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         }
 
         recipe = recipes.get(position*2+1);
-        holder.summary_recipe_name2.setText(recipe.getTitle());
+        holder.summary_recipe_name2.setText(recipe.getCocktailName());
         holder.summary_image2.setImageResource(R.drawable.jack_danial); // TODO
-        holder.summary_review2.setText(recipe.getReview());
+        holder.summary_review2.setText(recipe.getIntro());
         holder.summary_tag_recycler_view2.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+//        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
     }
 
     @Override

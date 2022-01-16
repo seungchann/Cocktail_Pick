@@ -10,10 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Tag;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecipeTagAdapter extends RecyclerView.Adapter<RecipeTagAdapter.ViewHolder> {
