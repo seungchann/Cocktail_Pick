@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocktail_Pick">
         <activity
+            android:name=".CustomImage.CustomActivity"
+            android:exported="false" />
+        <activity
             android:name=".Login.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -20,22 +23,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            </activity>
+        </activity>
         <activity
             android:name=".Main.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao65fb49aeedace7bb1c61e82acaf37669" />
             </intent-filter>
         </activity>
