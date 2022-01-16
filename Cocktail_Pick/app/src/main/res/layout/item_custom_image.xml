@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@drawable/frame_custom_image">
+
+    <ImageView
+        android:id="@+id/glass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/glass_cocktail"/>
+
+    <ImageView
+        android:id="@+id/liquid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/liquid_cocktail"/>
+
+    <ImageView
+        android:id="@+id/ice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ice_pieces_cocktail_champagne"/>
+
+    <ImageView
+        android:id="@+id/garnishFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/garnish_cherry_cocktail_champagne"/>
+
+    <ImageView
+        android:id="@+id/garnishSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/garnish_hurb_cocktail_champagne"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
