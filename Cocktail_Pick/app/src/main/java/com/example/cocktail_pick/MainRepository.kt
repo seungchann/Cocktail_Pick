@@ -1,11 +1,12 @@
 package com.example.cocktail_pick
 
-import com.example.cocktail_pick.RetrofitService
-
 class MainRepository constructor(private val retrofitService: RetrofitService) {
 
     /*
     fun getAllData() = retrofitService.getAllData()
      */
+
+    fun addUser(member: Member) = retrofitService.addUser(member)
+    fun checkUserAccount(email: String) = retrofitService.checkUserAccount(email)
 
 }
