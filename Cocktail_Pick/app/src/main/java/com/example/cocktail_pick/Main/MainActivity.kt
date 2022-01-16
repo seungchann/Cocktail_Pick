@@ -3,12 +3,18 @@ package com.example.cocktail_pick.Main
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.cocktail_pick.HomeTab.HomeTabFragment
+import com.example.cocktail_pick.Login.LoginViewModel
+import com.example.cocktail_pick.MainRepository
 import com.example.cocktail_pick.MyPageTab.MyPageTabFragment
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.RecommendTab.RecommendTabFragment
+import com.example.cocktail_pick.RetrofitService
 import com.example.cocktail_pick.SearchTab.SearchTabFragment
 import com.example.cocktail_pick.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
@@ -20,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private lateinit var binding: ActivityMainBinding
+    private val retrofitService = RetrofitService.getInstance()
+    private lateinit var viewModel: MainViewModel
 
     lateinit var tab1: HomeTabFragment
     lateinit var tab2: SearchTabFragment
@@ -36,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this, MainViewModelFactory(MainRepository(retrofitService))).get(MainViewModel::class.java)
+
+        viewModel.currentUserEmail = intent.getSerializableExtra("email") as String
+        viewModel.loadUserAccount()
 
         tab1 = HomeTabFragment()
         tab2 = SearchTabFragment()
@@ -81,14 +93,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-
-        /*
-        viewModel = ViewModelProvider(this, MainViewModelFactory(MainRepository(retrofitService))).get(MainViewModel::class.java)
-        viewModel.dataList.observe(this, Observer {
-            Log.d(TAG, "onCreate: $it")
-        })
-        viewModel.getAllData()
-         */
     }
 
     private fun replaceView(tab: Fragment) {
