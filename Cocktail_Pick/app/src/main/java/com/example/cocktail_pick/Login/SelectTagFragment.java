@@ -1,8 +1,10 @@
 package com.example.cocktail_pick.Login;
 
+import android.graphics.Color;
 import android.graphics.Outline;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +18,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectTagFragment extends Fragment {
 
@@ -31,7 +40,10 @@ public class SelectTagFragment extends Fragment {
     ImageView select_profile;
     Button select_tag_complete_btn;
 
-    ArrayList<Tag> tags;
+    LoginViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+    String TAG = "SelectTagAdapter";
+
     ArrayList<Tag> selected_tags;
     @Nullable
     @Override
@@ -39,6 +51,18 @@ public class SelectTagFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_select_tag, container, false);
+
+        viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(LoginViewModel .class);
+        viewModel.loadTagData();
+        recyclerView = rootView.findViewById(R.id.select_tag_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        viewModel.getTagDataList().observe(getViewLifecycleOwner(), new Observer<List<Tag>>() {
+            @Override
+            public void onChanged(List<Tag> tags) {
+                Log.d(TAG, tags.get(0).getTaste());
+                recyclerView.setAdapter(new SelectTagAdapter(getActivity(), (ArrayList<Tag>) tags, selected_tags));
+            }
+        });
 
         select_email = rootView.findViewById(R.id.select_email_text_view);
         select_name = rootView.findViewById(R.id.select_name_text_view);
@@ -57,12 +81,7 @@ public class SelectTagFragment extends Fragment {
         });
         linearLayout.setClipToOutline(true);
 
-        init_tag();
         selected_tags = new ArrayList<>();
-
-        recyclerView = rootView.findViewById(R.id.select_tag_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new SelectTagAdapter(getActivity(), tags, selected_tags));
 
         select_tag_complete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,16 +91,5 @@ public class SelectTagFragment extends Fragment {
         });
 
         return rootView;
-    }
-
-    void init_tag() {
-        tags = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            tags.add(new Tag("Red", "First"));
-            tags.add(new Tag("Red", "Second"));
-            tags.add(new Tag("Red", "Third"));
-        }
-
     }
 }

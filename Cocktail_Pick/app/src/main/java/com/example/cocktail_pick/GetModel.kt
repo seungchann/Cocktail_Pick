@@ -3,7 +3,7 @@ package com.example.cocktail_pick
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class User (
+data class UserReceive (
     var email: String,
     @SerializedName("username")
     var userName: String,
@@ -15,22 +15,12 @@ data class User (
     var myTag: List<String>,
 ): Serializable
 
-data class Member (
-    @SerializedName("username")
-    var userName: String,
-    @SerializedName("email")
-    var email: String,
-    @SerializedName("profile_url")
-    var profileURL: String,
-//    var tagList: List<Int>
-): Serializable
-
-data class Tag (
+data class TagReceive (
     var color: String,
     var taste: String,
 ): Serializable
 
-data class Recipe (
+data class RecipeReceive (
     @SerializedName("user_id")
     var userId: Int,
     var intro: String,
@@ -48,28 +38,27 @@ data class Recipe (
     var liqueur: Int,
     var etc: Int,
     var posting: String,
-):Serializable
+): Serializable
 
-data class Base (
+data class BaseReceive (
     var name: String,
     var onz: Float,
     var company: String,
 )
 
-data class Juice (
+data class JuiceReceive (
     var name: String,
     var onz: Float,
 )
 
-data class Liqueur (
+data class LiqueurReceive (
     var name: String,
     var onz: Float,
     var company: String,
 )
 
-data class Etc (
+data class EtcReceive (
     var name: String,
     var onz: Float,
 )
-
 
