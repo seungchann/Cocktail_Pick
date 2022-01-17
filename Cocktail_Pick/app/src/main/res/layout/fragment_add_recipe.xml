@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp">
-        <ImageView
-            android:id="@+id/detail_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/circle"
-            android:layout_marginRight="15dp"/>
-        <TextView
-            android:id="@+id/detail_name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="술을 좋아하는 무지"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:gravity="center"/>
-    </LinearLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -40,7 +21,7 @@
                     android:layout_width="150dp"
                     android:layout_height="250dp">
                     <include
-                        android:id="@+id/detail_custom"
+                        android:id="@+id/add_custom"
                         layout="@layout/item_custom_image"/>
                 </FrameLayout>
                 <LinearLayout
@@ -48,27 +29,40 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_cocktail_name"
+                    <EditText
+                        android:id="@+id/add_cocktail_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="모스크 뮬"
+                        android:hint="칵테일 이름을 입력하세요"
+                        android:textColorHint="@color/gray"
+                        android:fontFamily="@font/font_custom"
+                        android:textColorLink="@color/white"
+                        android:textColorHighlight="@color/white"
                         android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="35sp"/>
-                    <TextView
-                        android:id="@+id/detail_comment"
+                        android:textSize="18sp"/>
+                    <EditText
+                        android:id="@+id/add_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:scrollbars="horizontal"
-                        android:text="호불호가 없는 재료들이기에 모두가 좋아할 것 같다."
+                        android:fontFamily="@font/font_custom"
+                        android:hint="간단한 칵테일 소개를 입력해주세요"
+                        android:textColorHint="@color/gray"
                         android:textColor="@color/white"
-                        android:textSize="18sp"/>
+                        android:textSize="25sp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/add_select_tag"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:text="태그 선택"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/btn_fill"/>
                         <include
                             android:id="@+id/detail_first_tag"
                             android:layout_width="wrap_content"
@@ -79,25 +73,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             layout="@layout/item_tag_small"/>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-                        <ImageButton
-                            android:id="@+id/heart_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:background="@color/transparent"
-                            android:layout_gravity="center" />
-                        <TextView
-                            android:id="@+id/heart_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1172"
-                            android:layout_gravity="center"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -150,13 +125,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp">
-                <TableRow
-                    android:padding="5dp">
-                    <TextView
-                        android:id="@+id/detail_base"
+                <TableRow>
+                    <Spinner
+                        android:id="@+id/add_base"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="보드카"
+                        android:layout_gravity="center_vertical"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -165,41 +139,25 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"/>
-                    <TextView
-                        android:id="@+id/detail_base_onz"
+                    <EditText
+                        android:id="@+id/add_base_onz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 oz"
+                        android:text="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:fontFamily="@font/font_custom"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                </TableRow>
-
-                <TableRow
-                    android:padding="5dp">
                     <TextView
-                        android:id="@+id/detail_liqueur"
+                        android:id="@+id/add_base_oz_ml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="진저 에일"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:id="@+id/detail_liqueur_onz"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2 oz"
+                        android:layout_gravity="center"
+                        android:text=" oz"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -210,14 +168,16 @@
                         android:layout_weight="1"/>
                 </TableRow>
 
-                <TableRow
-                    android:padding="5dp">
-                    <TextView
-                        android:id="@+id/detail_etc"
+                <TableRow>
+                    <EditText
+                        android:id="@+id/add_liqueur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="레몬즙"
+                        android:layout_gravity="center"
                         android:textColor="@color/white"
+                        android:hint="Liqueur 이름을 입력해주세요"
+                        android:fontFamily="@font/font_custom"
+                        android:textColorHint="@color/gray"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -225,11 +185,25 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"/>
-                    <TextView
-                        android:id="@+id/detail_etc_onz"
+                    <EditText
+                        android:id="@+id/add_liqueur_onz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 oz"
+                        android:text="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:fontFamily="@font/font_custom"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/add_liqueur_oz_ml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=" oz"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -240,13 +214,42 @@
                         android:layout_weight="1"/>
                 </TableRow>
 
-                <TableRow
-                    android:padding="5dp">
-                    <TextView
-                        android:id="@+id/detail_garnish"
+                <TableRow>
+                    <EditText
+                        android:id="@+id/add_etc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="오렌지"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:hint="기타 재료 이름을 입력해주세요"
+                        android:fontFamily="@font/font_custom"
+                        android:textColorHint="@color/gray"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/add_etc_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:fontFamily="@font/font_custom"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/add_etc_oz_ml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=" oz"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -270,22 +273,30 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/step_recycler_view"
+                android:id="@+id/add_step_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/detail_posting"
+            <EditText
+                android:id="@+id/add_posting"
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"
-                android:text="오늘은 술을 먹고 싶은 날이다."
+                android:hint="하고 싶은 말을 적어주세요"
+                android:fontFamily="@font/font_custom"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:background="@drawable/postit"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="완료"
+                android:textSize="20sp"
+                android:background="@drawable/btn_fill"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

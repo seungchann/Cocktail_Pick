@@ -1,10 +1,15 @@
 package com.example.cocktail_pick.HomeTab.DetailRecipe;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,16 +19,30 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.BaseReceive;
+import com.example.cocktail_pick.HomeTab.CustomHandler;
+import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
+import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RecipeReceive;
+import com.example.cocktail_pick.RetrofitService;
+import com.example.cocktail_pick.databinding.ActivityDetailRecipeBinding;
+import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
+import com.example.cocktail_pick.databinding.ItemTagSmallBinding;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetailRecipeActivity extends AppCompatActivity {
 
@@ -35,13 +54,25 @@ public class DetailRecipeActivity extends AppCompatActivity {
     // FrameLayout? cocktail image, tag1, tag2
     ImageButton favorite_btn;
     Button onz_btn, ml_btn;
+    ItemCustomImageBinding detail_custom;
     boolean ONZ_FLAG;
     final float ONZ_ML = (float) 29.5735;
+
+    MainViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+
+    ActivityDetailRecipeBinding binding;
+    CustomHandler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_recipe);
+
+        binding = ActivityDetailRecipeBinding.inflate(getLayoutInflater());
+        handler = new CustomHandler();
+
+        viewModel = new ViewModelProvider(this, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        viewModel.loadTagBasedRecipe();
 
         Intent intent = getIntent();
         RecipeReceive recipe = (RecipeReceive) intent.getSerializableExtra("recipe");
@@ -49,32 +80,73 @@ public class DetailRecipeActivity extends AppCompatActivity {
         init_step();
         ONZ_FLAG = true;
 
-        recyclerView = findViewById(R.id.step_recycler_view);
+        recyclerView = binding.stepRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new StepAdapter(this, steps));
 
-        cocktail_name = findViewById(R.id.detail_cocktail_name);
-        comment = findViewById(R.id.detail_comment);
-        heart_num = findViewById(R.id.heart_num);
-        base = findViewById(R.id.detail_base);
-        base_onz = findViewById(R.id.detail_base_onz);
-        liqueur = findViewById(R.id.detail_liqueur);
-        liqueur_onz = findViewById(R.id.detail_liqueur_onz);
-        etc = findViewById(R.id.detail_etc);
-        etc_onz = findViewById(R.id.detail_etc_onz);
-        garnish = findViewById(R.id.detail_garnish);
-        LinearLayout tag1 = findViewById(R.id.detail_first_tag);
-        LinearLayout tag2 = findViewById(R.id.detail_second_tag);
-        favorite_btn = findViewById(R.id.heart_btn);
-        onz_btn = findViewById(R.id.onz_btn);
-        ml_btn = findViewById(R.id.ml_btn);
+        name = binding.detailName;
+        profile = binding.detailProfile;
+        cocktail_name = binding.detailCocktailName;
+        comment = binding.detailComment;
+        heart_num = binding.heartNum;
+        base = binding.detailBase;
+        base_onz = binding.detailBaseOnz;
+        liqueur = binding.detailLiqueur;
+        liqueur_onz = binding.detailLiqueurOnz;
+        etc = binding.detailEtc;
+        etc_onz = binding.detailEtcOnz;
+        garnish = binding.detailGarnish;
+        ItemTagSmallBinding tag1 = binding.detailFirstTag;
+        ItemTagSmallBinding tag2 = binding.detailSecondTag;
+        favorite_btn = (ImageButton) binding.heartBtn;
+        onz_btn = binding.onzBtn;
+        ml_btn = binding.mlBtn;
         comment.setMovementMethod(new ScrollingMovementMethod());
-        posting = findViewById(R.id.detail_posting);
+        posting = binding.detailPosting;
+        detail_custom = binding.detailCustom;
 
-        ImageView tag1_circle = tag1.findViewById(R.id.tag_circle_small);
-        TextView tag1_text = tag1.findViewById(R.id.tag_text_small);
-        ImageView tag2_circle = tag2.findViewById(R.id.tag_circle_small);
-        TextView tag2_text = tag2.findViewById(R.id.tag_text_small);
+        favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_24, getApplicationContext().getTheme()));
+
+        for (List<String> prefer_user : recipe.getPrefer_user_lists()) {
+            String name = prefer_user.get(0);
+            String profile_url = prefer_user.get(1);
+
+            viewModel.getCurrentUser().observe(this, new Observer<List<Member>>() {
+                @Override
+                public void onChanged(List<Member> members) {
+                    // email로 해야 맞을듯하지만..
+                    if (members.get(0).getProfileURL().equals(profile_url)) {
+                        favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_24, getApplicationContext().getTheme()));
+                    } else {
+                        Log.d("##########", "Click!!!");
+                        favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24, getApplicationContext().getTheme()));
+                    }
+                }
+            });
+
+        }
+
+        favorite_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (favorite_btn.getDrawable().equals(getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24, getApplicationContext().getTheme()))) {
+                    favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24, getApplicationContext().getTheme()));
+                    // TODO 좋아요 디비에 반영
+                } else {
+                    favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24, getApplicationContext().getTheme()));
+                    // TODO 좋아요 취소 디비에 반영
+                }
+            }
+        });
+//        name.setText();
+//        profile. glide..
+
+        ImageView tag1_circle = tag1.tagCircleSmall;
+        TextView tag1_text = tag1.tagTextSmall;
+        ImageView tag2_circle = tag2.tagCircleSmall;
+        TextView tag2_text = tag2.tagTextSmall;
+
+        handler.setGlass(recipe.getGlass(), recipe.getIce(), recipe.getGarnishFirst(), recipe.getGarnishSecond(), "#F9EEBA", detail_custom);
 
         ArrayList<Integer> tags = (ArrayList<Integer>) recipe.getTags();
         for (Integer tag_id : tags) {
@@ -131,12 +203,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         comment.setText(recipe.getIntro());
         heart_num.setText(recipe.getLike_num() + "");
         base.setText(recipe.getBase().getName());
-
-
-
         liqueur.setText(recipe.getLiqueur().getName());
-
-
         etc.setText(recipe.getEtc().getName());
 
 
@@ -144,6 +211,8 @@ public class DetailRecipeActivity extends AppCompatActivity {
         if (recipe.getGarnishSecond() == "") garnishString = recipe.getGarnishFirst();
         else garnishString = recipe.getGarnishFirst() + " / " + recipe.getGarnishSecond();
         garnish.setText(garnishString);
+
+        setContentView(binding.getRoot());
     }
 
 
