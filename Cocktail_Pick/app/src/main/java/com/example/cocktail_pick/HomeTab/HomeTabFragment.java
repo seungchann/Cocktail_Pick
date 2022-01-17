@@ -1,10 +1,12 @@
 package com.example.cocktail_pick.HomeTab;
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ public class HomeTabFragment extends Fragment {
     TextView profileName;
     SummaryAdapter summaryAdapter;
     ArrayList<Recipe> recipes;
+    Button testbtn;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
@@ -44,6 +47,15 @@ public class HomeTabFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(summaryAdapter);
 
+        testbtn = rootView.findViewById(R.id.testBtn);
+        testbtn.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                createCustomDialog();
+            }
+        });
+
         return rootView;
 
     }
@@ -56,5 +68,12 @@ public class HomeTabFragment extends Fragment {
 //            recipes.add(new Recipe());
         }
 
+    }
+
+    private void createCustomDialog() {
+        Dialog dialog;
+        dialog = new Dialog(getContext());
+        dialog.show();
+        dialog.getWindow().setLayout(750, 650);
     }
 }

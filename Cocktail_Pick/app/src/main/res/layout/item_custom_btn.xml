@@ -15,7 +15,7 @@
         app:cardBackgroundColor="@color/gray"
         >
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/glassBtn"
+            android:id="@+id/btnName"
             android:layout_width="match_parent"
             android:background="@null"
             android:layout_height="wrap_content"
