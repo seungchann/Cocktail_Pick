@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this, MainViewModelFactory(MainRepository(retrofitService))).get(MainViewModel::class.java)
 
-        viewModel.currentUserEmail = intent.getSerializableExtra("email") as String
+//        viewModel.currentUserEmail = intent.getSerializableExtra("email") as String
+        viewModel.currentUserEmail = "dycha0430@gmail.com"
         viewModel.loadUserAccount()
 
         tab1 = HomeTabFragment()
