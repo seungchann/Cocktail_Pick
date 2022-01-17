@@ -30,7 +30,7 @@ public class MyRecipeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_mypage_cart, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_mypage_summary, container, false);
 
         init_my_recipes();
         recyclerView = rootView.findViewById(R.id.mypage_recycler_view);
