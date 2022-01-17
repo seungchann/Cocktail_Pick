@@ -301,7 +301,7 @@ class CustomDialog(
                 when(garnishFirst){
                     "체리" -> {
                         garnishView.visibility= View.VISIBLE
-                        garnishView.setImageResource(R.drawable.garnish_cherry_highball)
+                        garnishView.setImageResource(R.drawable.garnish_cherry_tom_collins)
                     }
                     "허브" -> {
                         garnishView.visibility= View.VISIBLE
@@ -443,7 +443,7 @@ class CustomDialog(
                 when (garnishSecond) {
                     "체리" -> {
                         garnishView.visibility = View.VISIBLE
-                        garnishView.setImageResource(R.drawable.garnish_cherry_highball)
+                        garnishView.setImageResource(R.drawable.garnish_cherry_tom_collins)
                     }
                     "허브" -> {
                         garnishView.visibility = View.VISIBLE
