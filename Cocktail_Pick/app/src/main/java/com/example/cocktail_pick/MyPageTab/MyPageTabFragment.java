@@ -8,17 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cocktail_pick.HomeTab.RecipeTagAdapter;
+import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
+import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.User;
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,15 +39,22 @@ import java.util.List;
 public class MyPageTabFragment extends Fragment {
     RecyclerView my_tag_recycler_view;
     LinearLayout whole_view;
+    ImageView my_profile_image_view;
+    TextView my_name_text_view;
     List<String> testTagList = new ArrayList<>();
     User my_user = new User("@.","user","", testTagList);
     CartFragment cartFragment;
     MyRecipeFragment myRecipeFragment;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+    MainViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
+        viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        viewModel.loadUserAccount();
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_mypage, container, false);
         my_tag_recycler_view = rootView.findViewById(R.id.my_tag_recycler_view);
@@ -50,6 +67,16 @@ public class MyPageTabFragment extends Fragment {
         });
         my_tag_recycler_view.setAdapter(new RecipeTagAdapter(getActivity()));
 
+        my_profile_image_view = rootView.findViewById(R.id.my_profile_image_view);
+        my_name_text_view = rootView.findViewById(R.id.my_name_text_view);
+
+        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<Member>>() {
+            @Override
+            public void onChanged(List<Member> members) {
+                my_name_text_view.setText(members.get(0).getUserName());
+                Glide.with(getActivity()).load(members.get(0).getProfileURL()).into(my_profile_image_view);
+            }
+        });
         whole_view = rootView.findViewById(R.id.my_page_whole_view);
 //        whole_view.setBackgroundColor(); TODO!!! 태그 색깔로 배경 색깔 바꿔주기..!
 
