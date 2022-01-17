@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MyPageTabFragment extends Fragment {
     RecyclerView my_tag_recycler_view;
+    LinearLayout whole_view;
     List<String> testTagList = new ArrayList<>();
     User my_user = new User("@.","user","", testTagList);
     CartFragment cartFragment;
@@ -47,6 +49,9 @@ public class MyPageTabFragment extends Fragment {
             }
         });
         my_tag_recycler_view.setAdapter(new RecipeTagAdapter(getActivity()));
+
+        whole_view = rootView.findViewById(R.id.my_page_whole_view);
+//        whole_view.setBackgroundColor(); TODO!!! 태그 색깔로 배경 색깔 바꿔주기..!
 
         cartFragment = new CartFragment();
         myRecipeFragment = new MyRecipeFragment();

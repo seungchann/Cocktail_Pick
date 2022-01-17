@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.cocktail_pick.Login.LoginActivity
 import com.example.cocktail_pick.MainRepository
 import com.example.cocktail_pick.Member
+import com.example.cocktail_pick.RecipeReceive
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +17,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     private val TAG = "MainViewModel"
     lateinit var currentUserEmail: String
     var currentUser = MutableLiveData<List<Member>>()
+    var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -44,6 +46,23 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
 
             override fun onFailure(call: Call<List<Member>>, t: Throwable) {
                 Log.e(TAG, "유저 로드에 실패했습니다.")
+            }
+        })
+    }
+
+    fun loadTagBasedRecipe() {
+        val response = repository.loadTagBasedRecipe()
+        response.enqueue(object : Callback<List<RecipeReceive>> {
+            override fun onResponse(
+                call: Call<List<RecipeReceive>>,
+                response: Response<List<RecipeReceive>>
+            ) {
+                Log.d(TAG, "레시피가 로드되었습니다.")
+                tagBasedRecipeList.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<RecipeReceive>>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
             }
         })
     }

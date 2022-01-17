@@ -1,8 +1,11 @@
 package com.example.cocktail_pick.Login;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -32,6 +36,7 @@ import com.example.cocktail_pick.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class SelectTagFragment extends Fragment {
 
@@ -51,7 +56,7 @@ public class SelectTagFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_select_tag, container, false);
-
+        Context context = getActivity();
         viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(LoginViewModel .class);
         viewModel.loadTagData();
         recyclerView = rootView.findViewById(R.id.select_tag_recycler_view);
@@ -59,7 +64,7 @@ public class SelectTagFragment extends Fragment {
         viewModel.getTagDataList().observe(getViewLifecycleOwner(), new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
-                Log.d(TAG, tags.get(0).getTaste());
+//                Log.d(TAG, tags.get(0).getTaste());
                 recyclerView.setAdapter(new SelectTagAdapter(getActivity(), (ArrayList<Tag>) tags, selected_tags));
             }
         });
@@ -84,9 +89,19 @@ public class SelectTagFragment extends Fragment {
         selected_tags = new ArrayList<>();
 
         select_tag_complete_btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 // selected_tags를 유저 정보에 저장하고 메인액티비티로 넘어가면 됨.
+                selected_tags.forEach(new Consumer<Tag>() {
+                    @Override
+                    public void accept(Tag tag) {
+                        viewModel.getCurrentUser().getTag().add(tag.getId());
+                    }
+                });
+                Log.d(TAG, viewModel.currentUser.getTag().get(0).toString());
+                viewModel.addMember(viewModel.currentUser);
+                ((LoginActivity) getActivity()).moveToMainActivity();
             }
         });
 

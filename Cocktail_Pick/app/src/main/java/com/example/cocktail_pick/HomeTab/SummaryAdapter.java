@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,15 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cocktail_pick.HomeTab.DetailRecipe.DetailRecipeActivity;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
+import com.example.cocktail_pick.RecipeReceive;
 
 import java.util.ArrayList;
 
 public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Recipe> recipes;
+    ArrayList<RecipeReceive> recipes;
 
-    public SummaryAdapter(Context context, ArrayList<Recipe> recipes) {
+    public SummaryAdapter(Context context, ArrayList<RecipeReceive> recipes) {
         this.context = context;
         this.recipes = recipes;
     }
@@ -41,7 +43,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Recipe recipe = recipes.get(position*2);
+        final RecipeReceive recipe = recipes.get(position*2);
         holder.summary_recipe_name1.setText(recipe.getCocktailName());
 //        holder.summary_image1.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review1.setText(recipe.getIntro());
@@ -61,7 +63,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
             return;
         }
 
-        final Recipe recipe2 = recipes.get(position*2+1);
+        final RecipeReceive recipe2 = recipes.get(position*2+1);
         holder.summary_recipe_name2.setText(recipe2.getCocktailName());
 //        holder.summary_image2.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review2.setText(recipe2.getIntro());
@@ -85,7 +87,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView summary_recipe_name1, summary_recipe_name2, summary_review1, summary_review2;
-        FrameLayout summary_image1, summary_image2;
+        ConstraintLayout summary_image1, summary_image2;
         RecyclerView summary_tag_recycler_view1, summary_tag_recycler_view2;
         LinearLayout item_recipe1, item_recipe2;
 

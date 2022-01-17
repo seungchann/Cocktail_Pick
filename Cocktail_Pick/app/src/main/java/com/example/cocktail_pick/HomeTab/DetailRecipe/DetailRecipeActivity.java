@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.BaseReceive;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
+import com.example.cocktail_pick.RecipeReceive;
 
 import java.util.ArrayList;
 
@@ -34,7 +36,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_recipe);
 
         Intent intent = getIntent();
-        Recipe recipe = (Recipe)intent.getSerializableExtra("recipe");
+        RecipeReceive recipe = (RecipeReceive) intent.getSerializableExtra("recipe");
 
         init_step();
 
@@ -42,13 +44,34 @@ public class DetailRecipeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new StepAdapter(this, steps));
 
+        cocktail_name = findViewById(R.id.detail_cocktail_name);
+        comment = findViewById(R.id.detail_comment);
+        heart_num = findViewById(R.id.heart_num);
+        base = findViewById(R.id.detail_base);
+        base_onz = findViewById(R.id.detail_base_onz);
+        liqueur = findViewById(R.id.detail_liqueur);
+        liqueur_onz = findViewById(R.id.detail_liqueur_onz);
+        etc = findViewById(R.id.detail_etc);
+        etc_onz = findViewById(R.id.detail_etc_onz);
+        garnish = findViewById(R.id.detail_garnish);
+
         // profile, name 설정
         cocktail_name.setText(recipe.getCocktailName());
         comment.setText(recipe.getIntro());
-//        heart_num.setText(recipe.get);
-        base.setText(recipe.getBase()); // TODO int -> string 매칭 해줘야함
-//        base_onz.setText(recipe.get);
+        heart_num.setText(recipe.getLike_num() + "");
+        base.setText(recipe.getBase().getName());
+        base_onz.setText(recipe.getBase().getOnz() + "");
 
+        liqueur.setText(recipe.getLiqueur().getName());
+        liqueur_onz.setText(recipe.getLiqueur().getOnz() + "");
+
+        etc.setText(recipe.getEtc().getName());
+        etc_onz.setText(recipe.getEtc().getOnz() + "");
+
+        String garnishString = "";
+        if (recipe.getGarnishSecond() == "") garnishString = recipe.getGarnishFirst();
+        else garnishString = recipe.getGarnishFirst() + " / " + recipe.getGarnishSecond();
+        garnish.setText(garnishString);
     }
 
 

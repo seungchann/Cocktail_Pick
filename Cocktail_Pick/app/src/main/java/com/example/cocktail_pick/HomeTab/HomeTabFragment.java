@@ -27,6 +27,7 @@ import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
+import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
 
 import java.util.ArrayList;
@@ -58,15 +59,22 @@ public class HomeTabFragment extends Fragment {
         retrofitService = RetrofitService.Companion.getInstance();
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        viewModel.loadTagBasedRecipe();
 
         init_recipes();
 
         profileImage = rootView.findViewById(R.id.profile_image);
         profileName = rootView.findViewById(R.id.profile_text);
         recyclerView = rootView.findViewById(R.id.summary_recycler_view);
-        summaryAdapter = new SummaryAdapter(getActivity(), recipes);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(summaryAdapter);
+        viewModel.getTagBasedRecipeList().observe(getViewLifecycleOwner(), new Observer<List<RecipeReceive>>() {
+            @Override
+            public void onChanged(List<RecipeReceive> recipeReceives) {
+                summaryAdapter = new SummaryAdapter(getActivity(), (ArrayList<RecipeReceive>) recipeReceives);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(summaryAdapter);
+            }
+        });
+
 
         testbtn = rootView.findViewById(R.id.testBtn);
         testbtn.setOnClickListener(new Button.OnClickListener() {
