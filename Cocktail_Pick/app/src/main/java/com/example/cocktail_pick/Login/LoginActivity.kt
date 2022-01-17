@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun moveToMainActivity() {
         val nextIntent = Intent(this, MainActivity::class.java)
-        nextIntent.putExtra("email", viewModel.currentUserEmail)
+        nextIntent.putExtra("email", viewModel.currentUser.email)
         startActivity(nextIntent)
     }
 
