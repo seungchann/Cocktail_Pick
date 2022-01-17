@@ -16,5 +16,6 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="red">#FFED1313</color>
     <color name="green">#FF00691C</color>
+    <color name="selected_tag">#FF99AFFF</color>
 
 </resources>
