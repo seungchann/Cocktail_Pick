@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:paddingBottom="10dp">
+    <TextView
+        android:id="@+id/step_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. 텀블러에 보드카와 라임 주스를 넣는다."
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+</LinearLayout>
