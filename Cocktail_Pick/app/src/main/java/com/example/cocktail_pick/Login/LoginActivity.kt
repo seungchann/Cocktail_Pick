@@ -42,12 +42,13 @@ class LoginActivity : AppCompatActivity() {
 
     fun moveToMainActivity() {
         val nextIntent = Intent(this, MainActivity::class.java)
+        nextIntent.putExtra("email", viewModel.currentUserEmail)
         startActivity(nextIntent)
     }
 
     fun moveToTagFragment() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.login_frame_layout, TagFragment())
+            .replace(R.id.login_frame_layout, SelectTagFragment())
             .addToBackStack(null)
             .commit()
     }
