@@ -16,7 +16,7 @@ import retrofit2.awaitResponse
 class LoginViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "LoginViewModel"
-    lateinit var currentUserEmail: String
+    lateinit var currentUser: Member
     var tagDataList = MutableLiveData<List<Tag>>()
 
     /*
@@ -52,7 +52,7 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
 
     fun checkUserAccount(context: Context, member: Member) {
         val response = repository.checkUserAccount(member.email)
-        this.currentUserEmail = member.email
+        this.currentUser = member
         response.enqueue(object : Callback<List<Member>> {
             override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
                 Log.d(TAG, "유저가 로드되었습니다.")
