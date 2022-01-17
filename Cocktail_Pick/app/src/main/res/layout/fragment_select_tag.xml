@@ -47,7 +47,8 @@
     <LinearLayout
         android:id="@+id/select_tag_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:background="@color/background">
 
@@ -56,6 +57,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/select_tag_complete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
 
 
 

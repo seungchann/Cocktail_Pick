@@ -1,11 +1,15 @@
 package com.example.cocktail_pick.Login;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,19 +17,19 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Tag;
 import com.example.cocktail_pick.R;
-import com.example.cocktail_pick.SearchTab.SearchTabAdapter;
+import com.example.cocktail_pick.Tag;
 
 import java.util.ArrayList;
 
 public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.ViewHolder> {
     Context context;
-    ArrayList<Tag> tags;
+    ArrayList<Tag> tags, selected_tags;
 
-    public SelectTagAdapter(Context context, ArrayList<Tag> tags) {
+    public SelectTagAdapter(Context context, ArrayList<Tag> tags, ArrayList<Tag> selected_tags) {
         this.context = context;
         this.tags = tags;
+        this.selected_tags = selected_tags;
     }
     @NonNull
     @Override
@@ -37,25 +41,65 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Tag tag = tags.get(position*3);
+        final Tag tag = tags.get(position*3);
         holder.tag1.setText(tag.getTaste());
         holder.circle1.setColorFilter(R.color.red, PorterDuff.Mode.MULTIPLY);
+
+        holder.tag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selected_tags.contains(tag)) {
+                    selected_tags.remove(tag);
+                    holder.card1.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
+                } else {
+                    selected_tags.add(tag);
+                    holder.card1.setCardBackgroundColor(context.getResources().getColor(R.color.selected_tag));
+                }
+            }
+        });
+
         if (tags.size()-1 == position*3) {
             holder.card2.setVisibility(View.INVISIBLE);
             return;
         }
 
-        tag = tags.get(position*3+1);
-        holder.tag2.setText(tag.getTaste());
+        final Tag tag2 = tags.get(position*3+1);
+        holder.tag2.setText(tag2.getTaste());
         holder.circle2.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.MULTIPLY);
+
+        holder.tag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selected_tags.contains(tag2)) {
+                    selected_tags.remove(tag2);
+                    holder.card2.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
+                } else {
+                    selected_tags.add(tag2);
+                    holder.card2.setCardBackgroundColor(context.getResources().getColor(R.color.selected_tag));
+                }
+            }
+        });
+
         if (tags.size()-1 == position*3+1) {
             holder.card3.setVisibility(View.INVISIBLE);
             return;
         }
 
-        tag = tags.get(position*3+2);
-        holder.tag3.setText(tag.getTaste());
+        final Tag tag3 = tags.get(position*3+2);
+        holder.tag3.setText(tag3.getTaste());
         holder.circle3.setColorFilter(ContextCompat.getColor(context, R.color.green), PorterDuff.Mode.MULTIPLY);
+
+        holder.tag3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selected_tags.contains(tag3)) {
+                    selected_tags.remove(tag3);
+                    holder.card3.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
+                } else {
+                    selected_tags.add(tag3);
+                    holder.card3.setCardBackgroundColor(context.getResources().getColor(R.color.selected_tag));
+                }            }
+        });
     }
 
     @Override
@@ -65,7 +109,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView circle1, circle2, circle3;
-        TextView tag1, tag2, tag3;
+        Button tag1, tag2, tag3;
         CardView card1, card2, card3;
 
         public ViewHolder(View itemView) {
@@ -79,6 +123,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
             card1 = itemView.findViewById(R.id.card1);
             card2 = itemView.findViewById(R.id.card2);
             card3 = itemView.findViewById(R.id.card3);
+
         }
     }
 }

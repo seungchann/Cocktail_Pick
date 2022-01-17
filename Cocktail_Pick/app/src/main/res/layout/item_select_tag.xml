@@ -38,6 +38,45 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@color/gray"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent">
+            <ImageView
+                android:id="@+id/circle2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/circle"
+                android:layout_gravity="center_vertical"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tag_btn2"
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:text="뒷맛이 깔끔한"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeStepGranularity="1sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/card3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,44 +100,6 @@
                 android:scaleType="fitCenter"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/tag_btn3"
-                android:layout_width="match_parent"
-                android:background="@null"
-                android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:text="뒷맛이 깔끔한"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeMaxTextSize="13sp"
-                android:autoSizeStepGranularity="1sp"
-                android:textColor="@color/white"/>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="15dp"
-        android:layout_weight="1"
-        app:cardBackgroundColor="@color/gray"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent">
-            <ImageView
-                android:id="@+id/circle2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/circle"
-                android:layout_gravity="center_vertical"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tag_btn2"
                 android:layout_width="match_parent"
                 android:background="@null"
                 android:layout_height="wrap_content"
