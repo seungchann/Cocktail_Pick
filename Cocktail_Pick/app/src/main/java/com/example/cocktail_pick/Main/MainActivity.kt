@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun replaceView(tab: Fragment) {
+    fun replaceView(tab: Fragment) {
         var selectedFragment: Fragment? = null
         selectedFragment = tab
         selectedFragment?.let {
