@@ -1,117 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".HomeTab.CustomDialog"
-android:background="@color/background"
+android:background="@color/transparent"
 android:orientation="vertical">
-
-<FrameLayout
-    android:layout_width="300dp"
-    android:layout_height="300dp"
-    android:layout_gravity="center_horizontal">
-    <include
-        android:id="@+id/customImage"
-        layout="@layout/item_custom_image"/>
-</FrameLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="35dp"
-        android:orientation="vertical">
-
-        <TextView
+        app:cardCornerRadius="50dp"
+        android:background="@color/transparent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="{ 글라스 }"
-            android:fontFamily="@font/handwriting"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:gravity="center"/>
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center_horizontal">
+                <include
+                    android:id="@+id/customImage"
+                    layout="@layout/item_custom_image"/>
+            </FrameLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="35dp"
+                    android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/glassBtn"
-            android:paddingTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_custom_btn"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="{ 글라스 }"
+                        android:fontFamily="@font/handwriting"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:gravity="center"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="{ 얼음 }"
-            android:fontFamily="@font/handwriting"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:paddingTop="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/glassBtn"
+                        android:paddingTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_custom_btn"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/iceBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            tools:listitem="@layout/item_custom_btn"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="{ 얼음 }"
+                        android:fontFamily="@font/handwriting"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:gravity="center"
+                        android:paddingTop="15dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="{ 가니쉬 }"
-            android:fontFamily="@font/handwriting"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:paddingTop="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/iceBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        tools:listitem="@layout/item_custom_btn"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/firstGarnishBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            tools:listitem="@layout/item_custom_btn"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="{ 가니쉬 }"
+                        android:fontFamily="@font/handwriting"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:gravity="center"
+                        android:paddingTop="15dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="{ 가니쉬 }"
-            android:fontFamily="@font/handwriting"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:paddingTop="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/firstGarnishBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        tools:listitem="@layout/item_custom_btn"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/secondGarnishBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            tools:listitem="@layout/item_custom_btn"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="{ 가니쉬 }"
+                        android:fontFamily="@font/handwriting"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:gravity="center"
+                        android:paddingTop="15dp"/>
 
-        <ImageButton
-            android:id="@+id/createBtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/transparent"
-            android:src="@drawable/jigger"
-            android:scaleType="fitCenter"
-            android:paddingBottom="25dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="10dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/secondGarnishBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        tools:listitem="@layout/item_custom_btn"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"/>
 
-    </LinearLayout>
-</ScrollView>
+                    <ImageButton
+                        android:id="@+id/createBtn"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/transparent"
+                        android:src="@drawable/jigger"
+                        android:scaleType="fitCenter"
+                        android:paddingBottom="25dp"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="10dp"/>
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

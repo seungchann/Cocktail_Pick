@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktail_pick.databinding.ItemCustomBtnBinding
 
 class IceBtnAdapter(private var context: Context) : RecyclerView.Adapter<IceBtnAdapter.ViewHolder>() {
-
+    var setOnClickIceItem: ((Int) -> Unit)? = null
     private var iceBtn = mutableListOf<String>(
         "얼음 조각",
         "둥근 얼음",
@@ -29,6 +29,13 @@ class IceBtnAdapter(private var context: Context) : RecyclerView.Adapter<IceBtnA
 
         fun bind(btn: String) {
             binding.btnName.text = btn
+            binding.btnName.setOnClickListener {
+                when (btn) {
+                    "얼음 조각" -> setOnClickIceItem?.invoke(0)
+                    "둥근 얼음" -> setOnClickIceItem?.invoke(1)
+                    "사각 얼음" -> setOnClickIceItem?.invoke(2)
+                }
+            }
         }
 
     }

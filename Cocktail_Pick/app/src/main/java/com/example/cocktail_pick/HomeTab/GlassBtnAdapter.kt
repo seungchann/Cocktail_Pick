@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktail_pick.databinding.ItemCustomBtnBinding
 
-class GlassBtnAdapter(private var context: Context) : RecyclerView.Adapter<GlassBtnAdapter.ViewHolder>() {
+class GlassBtnAdapter(
+    private var context: Context,
+) : RecyclerView.Adapter<GlassBtnAdapter.ViewHolder>() {
 
+    var setOnClickGlassItem: ((String) -> Unit)? = null
     private var glassBtn = mutableListOf<String>(
         "칵테일 글라스"
-        , "소서형 샴페인"
+        , "소서형 샴폐인"
         , "사워 글라스"
         , "풋티스 필스너"
         , "셰리 와인 글라스"
@@ -33,7 +36,10 @@ class GlassBtnAdapter(private var context: Context) : RecyclerView.Adapter<Glass
 
     inner class ViewHolder(private val binding: ItemCustomBtnBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(btn: String){
-            
+            binding.btnName.text = btn
+            binding.btnName.setOnClickListener {
+                setOnClickGlassItem?.invoke(btn)
+            }
         }
     }
 }

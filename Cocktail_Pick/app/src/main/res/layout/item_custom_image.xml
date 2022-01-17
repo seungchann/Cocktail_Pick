@@ -32,7 +32,7 @@
         android:id="@+id/garnishSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/garnish_hurb_cocktail_champagne"/>
+        android:src="@drawable/garnish_hurb_cocktail_champagne" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

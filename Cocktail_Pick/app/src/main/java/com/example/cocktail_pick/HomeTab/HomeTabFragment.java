@@ -94,8 +94,8 @@ public class HomeTabFragment extends Fragment {
 
     private void createCustomDialog() {
         Dialog dialog;
-        dialog = new Dialog(getContext());
+        dialog = new CustomDialog(requireContext());
         dialog.show();
-        dialog.getWindow().setLayout(750, 650);
+        dialog.getWindow().setLayout(1000, 1500);
     }
 }

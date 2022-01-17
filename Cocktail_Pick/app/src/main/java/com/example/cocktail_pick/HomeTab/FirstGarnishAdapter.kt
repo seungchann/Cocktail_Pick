@@ -9,12 +9,15 @@ import com.example.cocktail_pick.databinding.DialogCustomBinding
 import com.example.cocktail_pick.databinding.ItemCustomBtnBinding
 
 class FirstGarnishAdapter(private var context: Context) : RecyclerView.Adapter<ViewHolder>() {
+    var setOnClickFirstGarnishItem: ((String) -> Unit)? = null
+
     private var garnishBtn = mutableListOf<String>(
         "x"
         , "라임"
         , "오렌지"
         , "자몽"
-        , "허브")
+        , "허브"
+        , "체리")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCustomBtnBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -30,6 +33,9 @@ class FirstGarnishAdapter(private var context: Context) : RecyclerView.Adapter<V
     inner class ViewHolder(private val binding: ItemCustomBtnBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(btn: String) {
             binding.btnName.text = btn
+            binding.btnName.setOnClickListener {
+                setOnClickFirstGarnishItem?.invoke(btn)
+            }
         }
     }
 }
