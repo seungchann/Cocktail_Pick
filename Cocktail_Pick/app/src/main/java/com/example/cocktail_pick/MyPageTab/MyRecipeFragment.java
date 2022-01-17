@@ -35,7 +35,7 @@ public class MyRecipeFragment extends Fragment {
         init_my_recipes();
         recyclerView = rootView.findViewById(R.id.mypage_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new SummaryAdapter(getActivity(), my_recipes));
+//        recyclerView.setAdapter(new SummaryAdapter(getActivity(), my_recipes));
 
         return rootView;
     }

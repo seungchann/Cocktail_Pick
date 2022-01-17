@@ -31,7 +31,7 @@ public class CartFragment extends Fragment {
         init_carts();
         recyclerView = rootView.findViewById(R.id.mypage_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new SummaryAdapter(getActivity(), carts));
+//        recyclerView.setAdapter(new SummaryAdapter(getActivity(), carts));
 
         return rootView;
     }
