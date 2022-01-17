@@ -48,7 +48,7 @@ public class RecommendTabFragment extends Fragment {
 
         recommend_recycler_view = rootView.findViewById(R.id.recommend_recycler_view);
         recommend_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        summary_adapter = new SummaryAdapter(getActivity(), recommendRecipes);
+//        summary_adapter = new SummaryAdapter(getActivity(), recommendRecipes);
         recommend_recycler_view.setAdapter(summary_adapter);
 
         addBtn = rootView.findViewById(R.id.add_buying_btn);

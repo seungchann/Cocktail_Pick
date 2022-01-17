@@ -28,6 +28,9 @@ interface RetrofitService {
     @GET("/tag/")
     fun loadTagData(): Call<List<Tag>>
 
+    @GET("/recipe/tag/")
+    fun loadTagBasedRecipe(): Call<List<RecipeReceive>>
+
 
     companion object {
         var retrofitService: RetrofitService? = null
