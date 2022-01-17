@@ -1,18 +1,21 @@
 package com.example.cocktail_pick.HomeTab;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.HomeTab.DetailRecipe.DetailRecipeActivity;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 
@@ -38,24 +41,41 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position*2);
+        final Recipe recipe = recipes.get(position*2);
         holder.summary_recipe_name1.setText(recipe.getCocktailName());
 //        holder.summary_image1.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review1.setText(recipe.getIntro());
         holder.summary_tag_recycler_view1.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
 //        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+        holder.item_recipe1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailRecipeActivity.class);
+                intent.putExtra("recipe", recipe);
+                context.startActivity(intent);
+            }
+        });
 
         if (recipes.size()-1 == position*2) {
             holder.item_recipe2.setVisibility(View.INVISIBLE);
             return;
         }
 
-        recipe = recipes.get(position*2+1);
-        holder.summary_recipe_name2.setText(recipe.getCocktailName());
+        final Recipe recipe2 = recipes.get(position*2+1);
+        holder.summary_recipe_name2.setText(recipe2.getCocktailName());
 //        holder.summary_image2.setImageResource(R.drawable.jack_danial); // TODO
-        holder.summary_review2.setText(recipe.getIntro());
+        holder.summary_review2.setText(recipe2.getIntro());
         holder.summary_tag_recycler_view2.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
 //        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+
+        holder.item_recipe2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailRecipeActivity.class);
+                intent.putExtra("recipe", recipe2);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

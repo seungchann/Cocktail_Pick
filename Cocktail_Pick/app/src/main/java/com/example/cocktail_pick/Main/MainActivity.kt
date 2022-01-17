@@ -3,13 +3,11 @@ package com.example.cocktail_pick.Main
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.cocktail_pick.HomeTab.DetailRecipe.DetailRecipeActivity
 import com.example.cocktail_pick.HomeTab.HomeTabFragment
-import com.example.cocktail_pick.Login.LoginViewModel
 import com.example.cocktail_pick.MainRepository
 import com.example.cocktail_pick.MyPageTab.MyPageTabFragment
 import com.example.cocktail_pick.R

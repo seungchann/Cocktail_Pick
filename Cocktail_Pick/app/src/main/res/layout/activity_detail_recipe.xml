@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <ImageView
+            android:id="@+id/detail_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/circle"
+            android:layout_marginRight="15dp"/>
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="술을 좋아하는 무지"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:gravity="center"/>
+    </LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="150dp"
+                    android:layout_height="250dp">
+                    <include
+                        android:id="@+id/detail_custom"
+                        layout="@layout/item_custom_image"/>
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/detail_cocktail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="모스크 뮬"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="40sp"/>
+                    <TextView
+                        android:id="@+id/detail_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="호불호가 없는 재료들이기에 모두가 좋아할 것 같다."
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <include
+                            android:id="@+id/detail_first_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            layout="@layout/item_tag_small"/>
+                        <include
+                            android:id="@+id/detail_second_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            layout="@layout/item_tag_small"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <ImageButton
+                            android:id="@+id/heart_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_baseline_favorite_border_24"
+                            android:background="@color/transparent"
+                            app:tint="@color/white" />
+                        <TextView
+                            android:id="@+id/heart_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1172"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="필요한 재료"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/onz_btn"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="Oz"
+                    android:textSize="10sp"
+                    android:background="@drawable/btn_fill"
+                    android:layout_marginRight="5dp"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/ml_btn"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="ml"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_outline"
+                    />
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TableRow
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/detail_base"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="보드카"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/detail_base_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 oz"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/detail_liqueur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="진저 에일"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/detail_liqueur_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 oz"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/detail_etc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="레몬즙"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/detail_etc_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 oz"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/detail_garnish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오렌지"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="레시피"
+                android:tag="sticky"
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/step_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
