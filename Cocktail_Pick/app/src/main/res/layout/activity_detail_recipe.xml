@@ -9,11 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="15dp">
         <ImageView
             android:id="@+id/detail_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/circle"
             android:layout_marginRight="15dp"/>
         <TextView
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:text="술을 좋아하는 무지"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:gravity="center"/>
     </LinearLayout>
     <androidx.core.widget.NestedScrollView
@@ -34,7 +34,8 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="15dp">
                 <FrameLayout
                     android:layout_width="150dp"
                     android:layout_height="250dp">
@@ -45,7 +46,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/detail_cocktail_name"
@@ -55,15 +56,16 @@
                         android:text="모스크 뮬"
                         android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="40sp"/>
+                        android:textSize="35sp"/>
                     <TextView
                         android:id="@+id/detail_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:scrollbars="horizontal"
                         android:text="호불호가 없는 재료들이기에 모두가 좋아할 것 같다."
                         android:textColor="@color/white"
-                        android:textSize="20sp"/>
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -116,8 +118,8 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/onz_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:minHeight="0dp"
                     android:minWidth="0dp"
                     android:layout_gravity="center"
@@ -130,8 +132,8 @@
                     />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ml_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:minHeight="0dp"
                     android:minWidth="0dp"
                     android:layout_gravity="center"
@@ -263,14 +265,27 @@
                 android:text="레시피"
                 android:tag="sticky"
                 android:textColor="@color/white"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:layout_margin="15dp"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/step_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-
+            <TextView
+                android:id="@+id/detail_posting"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="20sp"
+                android:text="오늘은 술을 먹고 싶은 날이다."
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:background="@drawable/postit"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

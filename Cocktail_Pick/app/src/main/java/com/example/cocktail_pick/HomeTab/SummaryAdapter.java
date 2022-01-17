@@ -61,6 +61,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         holder.summary_review1.setText(recipe.getIntro());
         holder.summary_tag_recycler_view1.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
 //        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+
+        // TODO Tag 받야와야 함
         holder.item_recipe1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +83,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         holder.summary_recipe_name2.setText(recipe2.getCocktailName());
 //        holder.summary_image2.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review2.setText(recipe2.getIntro());
+
         holder.summary_tag_recycler_view2.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
 //        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
 
