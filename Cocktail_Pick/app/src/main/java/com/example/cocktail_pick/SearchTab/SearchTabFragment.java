@@ -25,6 +25,7 @@ import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
 import com.mancj.materialsearchbar.MaterialSearchBar;
+import com.example.cocktail_pick.Data.Base;
 
 import java.util.ArrayList;
 import java.util.List;
