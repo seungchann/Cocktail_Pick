@@ -38,6 +38,8 @@ data class RecipeReceive (
     var tags: List<Int>,
     @SerializedName("cocktail_name")
     var cocktailName: String,
+    @SerializedName("cocktail_color")
+    var cocktailColor: String,
     var glass: String,
     var ice: Int,
     @SerializedName("garnish_first")
@@ -55,6 +57,7 @@ data class RecipeReceive (
     var etc: EtcReceive,
     var like_num: Int,
     var prefer_user_lists: List<List<String>>,
+    var step: String,
 ): Serializable
 
 data class BaseReceive (

@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
-import com.example.cocktail_pick.SearchTab.Product;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 
 import java.util.ArrayList;
@@ -34,8 +34,9 @@ public class CustomSuggestionsAdapter extends SuggestionsAdapter<Product, Custom
 
     @Override
     public void onBindSuggestionHolder(Product suggestion, SuggestionHolder holder, int position) {
-        holder.title.setText(suggestion.getTitle());
-        holder.subtitle.setText("The price is " + suggestion.getBase() + "$");
+        holder.title.setText(suggestion.getCompanyName());
+        holder.subtitle.setText("Base is " + suggestion.getBase());
+        holder.image.setImageResource(suggestion.getPicture());
     }
 
     /**
@@ -61,7 +62,7 @@ public class CustomSuggestionsAdapter extends SuggestionsAdapter<Product, Custom
                 else {
                     suggestions = new ArrayList<>();
                     for (Product item: suggestions_clone)
-                        if(item.getTitle().contains(term))
+                        if(item.getCompanyName().contains(term))
                             suggestions.add(item);
                 }
                 results.values = suggestions;
@@ -85,6 +86,7 @@ public class CustomSuggestionsAdapter extends SuggestionsAdapter<Product, Custom
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.suggestion_title);
             subtitle = (TextView) itemView.findViewById(R.id.suggestion_subtitle);
+            image  = (ImageView) itemView.findViewById(R.id.suggestion_image);
         }
     }
 

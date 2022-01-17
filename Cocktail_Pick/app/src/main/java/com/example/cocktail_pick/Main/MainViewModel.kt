@@ -4,10 +4,8 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cocktail_pick.*
 import com.example.cocktail_pick.Login.LoginActivity
-import com.example.cocktail_pick.MainRepository
-import com.example.cocktail_pick.Member
-import com.example.cocktail_pick.RecipeReceive
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +16,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     lateinit var currentUserEmail: String
     var currentUser = MutableLiveData<List<Member>>()
     var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
+    var productList = mutableListOf<Product>()
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -66,5 +65,13 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
             }
         })
     }
+
+    fun initProductList() {
+        for(i in 1..20) {
+            productList.add(Product("잭 다니엘", "Whiskey", R.drawable.jack_danial))
+        }
+    }
+
+
 
 }
