@@ -44,6 +44,17 @@ public class DetailRecipeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new StepAdapter(this, steps));
 
+        cocktail_name = findViewById(R.id.detail_cocktail_name);
+        comment = findViewById(R.id.detail_comment);
+        heart_num = findViewById(R.id.heart_num);
+        base = findViewById(R.id.detail_base);
+        base_onz = findViewById(R.id.detail_base_onz);
+        liqueur = findViewById(R.id.detail_liqueur);
+        liqueur_onz = findViewById(R.id.detail_liqueur_onz);
+        etc = findViewById(R.id.detail_etc);
+        etc_onz = findViewById(R.id.detail_etc_onz);
+        garnish = findViewById(R.id.detail_garnish);
+
         // profile, name 설정
         cocktail_name.setText(recipe.getCocktailName());
         comment.setText(recipe.getIntro());
@@ -57,7 +68,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         etc.setText(recipe.getEtc().getName());
         etc_onz.setText(recipe.getEtc().getOnz() + "");
 
-        String garnishString = ""
+        String garnishString = "";
         if (recipe.getGarnishSecond() == "") garnishString = recipe.getGarnishFirst();
         else garnishString = recipe.getGarnishFirst() + " / " + recipe.getGarnishSecond();
         garnish.setText(garnishString);

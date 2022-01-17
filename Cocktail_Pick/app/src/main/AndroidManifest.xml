@@ -43,6 +43,8 @@
                     android:scheme="kakao65fb49aeedace7bb1c61e82acaf37669" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HomeTab.DetailRecipe.DetailRecipeActivity"/>
     </application>
 
 </manifest>
