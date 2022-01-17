@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.Data.Recipe;
 import com.example.cocktail_pick.HomeTab.SummaryAdapter;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Recipe;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class CartFragment extends Fragment {
     void init_carts() {
         carts = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            carts.add(new Recipe());
+//            carts.add(new Recipe());
         }
     }
 }

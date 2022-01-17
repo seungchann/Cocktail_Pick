@@ -14,7 +14,6 @@ import retrofit2.awaitResponse
 class LoginViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "LoginViewModel"
-    var hasUserAccount: Boolean = false
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -55,6 +54,7 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
                     (context as LoginActivity).moveToMainActivity()
                 } else {
                     addMember(member)
+                    (context as LoginActivity).moveToTagFragment()
                 }
             }
 
@@ -63,22 +63,4 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
             }
         })
     }
-
-    /*
-    fun checkUserAccount(email: String) {
-        val response = repository.checkUserAccount(email)
-        response.enqueue(object : Callback<List<Member>> {
-            override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
-                Log.d(TAG, "유저가 로드되었습니다.")
-                if (response.body()?.size != 0) {
-                    hasUserAccount = true
-                }
-            }
-
-            override fun onFailure(call: Call<List<Member>>, t: Throwable) {
-                Log.e(TAG, "유저 로드에 실패했습니다.")
-            }
-        })
-    }
-     */
 }
