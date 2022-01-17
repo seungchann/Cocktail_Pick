@@ -42,7 +42,7 @@ public class HomeTabFragment extends Fragment {
     ArrayList<Recipe> recipes;
     Button testbtn;
     MainViewModel viewModel;
-    RetrofitService retrofitService;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
     String glass;
     String garnishFirst;
@@ -56,7 +56,6 @@ public class HomeTabFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        retrofitService = RetrofitService.Companion.getInstance();
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
         viewModel.loadTagBasedRecipe();
