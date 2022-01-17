@@ -78,6 +78,6 @@ data class Product (
     var companyName: String,
     var base: String,
     var picture: Int,
-)
+):Serializable
 
 
