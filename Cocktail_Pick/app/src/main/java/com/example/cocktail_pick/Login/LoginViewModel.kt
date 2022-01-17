@@ -2,9 +2,11 @@ package com.example.cocktail_pick.Login
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cocktail_pick.MainRepository
 import com.example.cocktail_pick.Member
+import com.example.cocktail_pick.Tag
 import com.example.cocktail_pick.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +17,8 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
 
     private val TAG = "LoginViewModel"
     lateinit var currentUserEmail: String
+    var tagDataList = MutableLiveData<List<Tag>>()
+
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -55,13 +59,26 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
                 if (response.body()?.size != 0) {
                     (context as LoginActivity).moveToMainActivity()
                 } else {
-                    addMember(member)
+//                    addMember(member)
                     (context as LoginActivity).moveToTagFragment()
                 }
             }
 
             override fun onFailure(call: Call<List<Member>>, t: Throwable) {
                 Log.e(TAG, "유저 로드에 실패했습니다.")
+            }
+        })
+    }
+
+    fun loadTagData() {
+        val response = repository.loadTagData()
+        response.enqueue(object : Callback<List<Tag>> {
+            override fun onResponse(call: Call<List<Tag>>, response: Response<List<Tag>>) {
+                tagDataList.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Tag>>, t: Throwable) {
+                Log.e(TAG, "TAG 로드에 실패했습니다.")
             }
         })
     }

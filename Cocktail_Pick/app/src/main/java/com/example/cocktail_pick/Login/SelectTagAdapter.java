@@ -3,14 +3,11 @@ package com.example.cocktail_pick.Login;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -30,6 +27,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
         this.context = context;
         this.tags = tags;
         this.selected_tags = selected_tags;
+
     }
     @NonNull
     @Override
@@ -43,7 +41,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Tag tag = tags.get(position*3);
         holder.tag1.setText(tag.getTaste());
-        holder.circle1.setColorFilter(R.color.red, PorterDuff.Mode.MULTIPLY);
+        holder.circle1.setColorFilter(Color.parseColor(tag.getColor()), PorterDuff.Mode.MULTIPLY);
 
         holder.tag1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +63,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
         final Tag tag2 = tags.get(position*3+1);
         holder.tag2.setText(tag2.getTaste());
-        holder.circle2.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.MULTIPLY);
+        holder.circle2.setColorFilter(Color.parseColor(tag2.getColor()), PorterDuff.Mode.MULTIPLY);
 
         holder.tag2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +85,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
         final Tag tag3 = tags.get(position*3+2);
         holder.tag3.setText(tag3.getTaste());
-        holder.circle3.setColorFilter(ContextCompat.getColor(context, R.color.green), PorterDuff.Mode.MULTIPLY);
+        holder.circle3.setColorFilter(Color.parseColor(tag3.getColor()), PorterDuff.Mode.MULTIPLY);
 
         holder.tag3.setOnClickListener(new View.OnClickListener() {
             @Override

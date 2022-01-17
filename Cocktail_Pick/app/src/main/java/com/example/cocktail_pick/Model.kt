@@ -22,6 +22,7 @@ data class Member (
     var email: String,
     @SerializedName("profile_url")
     var profileURL: String,
+//    var tagList: List<Int>
 ): Serializable
 
 data class Tag (

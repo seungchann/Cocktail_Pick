@@ -8,5 +8,6 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
 
     fun addUser(member: Member) = retrofitService.addUser(member)
     fun checkUserAccount(email: String) = retrofitService.checkUserAccount(email)
+    fun loadTagData() = retrofitService.loadTagData()
 
 }
