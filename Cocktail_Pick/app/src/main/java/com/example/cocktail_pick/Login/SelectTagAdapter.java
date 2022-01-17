@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -50,6 +51,10 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
                     selected_tags.remove(tag);
                     holder.card1.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
                 } else {
+                    if (selected_tags.size() == 3) {
+                        Toast.makeText(context, "최대 3개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     selected_tags.add(tag);
                     holder.card1.setCardBackgroundColor(context.getResources().getColor(R.color.selected_tag));
                 }
@@ -72,6 +77,10 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
                     selected_tags.remove(tag2);
                     holder.card2.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
                 } else {
+                    if (selected_tags.size() == 3) {
+                        Toast.makeText(context, "최대 3개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     selected_tags.add(tag2);
                     holder.card2.setCardBackgroundColor(context.getResources().getColor(R.color.selected_tag));
                 }

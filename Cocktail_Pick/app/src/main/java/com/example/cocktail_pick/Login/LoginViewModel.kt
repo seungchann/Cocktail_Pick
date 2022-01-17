@@ -65,7 +65,7 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
             }
 
             override fun onFailure(call: Call<List<Member>>, t: Throwable) {
-                Log.e(TAG, "유저 로드에 실패했습니다.")
+                Log.e(TAG, "유저 로드에 실패했습니다." + t.message.toString())
             }
         })
     }

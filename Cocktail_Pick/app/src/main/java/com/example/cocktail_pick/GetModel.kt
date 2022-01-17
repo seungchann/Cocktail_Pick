@@ -60,20 +60,20 @@ data class BaseReceive (
     var name: String,
     var onz: Float,
     var company: String,
-)
+): Serializable
 
 data class JuiceReceive (
     var name: String,
     var onz: Float,
-)
+): Serializable
 
 data class LiqueurReceive (
     var name: String,
     var onz: Float,
     var company: String,
-)
+): Serializable
 
 data class EtcReceive (
     var name: String,
     var onz: Float,
-)
+): Serializable

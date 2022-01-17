@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -42,6 +43,8 @@
                     android:scheme="kakao65fb49aeedace7bb1c61e82acaf37669" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HomeTab.DetailRecipe.DetailRecipeActivity"/>
     </application>
 
 </manifest>
