@@ -1,21 +1,23 @@
 package com.example.cocktail_pick.HomeTab
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.databinding.DialogCustomBinding
-import kotlinx.android.synthetic.main.dialog_custom.*
-import kotlinx.android.synthetic.main.item_custom_image.*
+import vadiole.colorpicker.ColorModel
+import vadiole.colorpicker.ColorPickerDialog
 
 class CustomDialog(
     private var _context: Context,
+    private var fragmentManager: FragmentManager,
 ) : Dialog(_context) {
 
     private lateinit var glassAdapter: GlassBtnAdapter
@@ -24,11 +26,13 @@ class CustomDialog(
     private lateinit var iceAdapter: IceBtnAdapter
     private lateinit var binding: DialogCustomBinding
 
-    private var glass = "칵테일 글라스"
-    private var ice = 0
-    private var garnishFirst = "체리"
-    private var garnishSecond = "허브"
+    var glass = "칵테일 글라스"
+    var ice = 0
+    var garnishFirst = "체리"
+    var garnishSecond = "허브"
+    var color = "#f9eeba"
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         super.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -39,6 +43,37 @@ class CustomDialog(
         setGarnishAdapter()
         setSecondGarnishAdapter()
         setIceAdapter()
+
+        binding.customImage.garnishSecond.setOnClickListener {
+            val colorPicker: ColorPickerDialog = ColorPickerDialog.Builder()
+                .setInitialColor(Color.parseColor(color))
+                .setColorModel(ColorModel.RGB)
+                .setColorModelSwitchEnabled(true)
+                .setButtonOkText(android.R.string.ok)
+                .setButtonCancelText(android.R.string.cancel)
+                .onColorSelected { color: Int ->
+                    this.color = "#${"%06X".format(color + 16777216)}"
+                    binding.customImage.liquid.setColorFilter(color)
+                }
+                .create()
+
+            colorPicker.show(fragmentManager, "color_picker")
+        }
+
+        binding.createBtn.setOnTouchListener { _: View, event: MotionEvent ->
+            when(event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.createBtn.setRotation(30f)
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    binding.createBtn.setRotation(-30f)
+                    dismiss()
+                    true
+                }
+                else -> true
+            }
+        }
 
         setContentView(binding.root)
     }
@@ -156,6 +191,7 @@ class CustomDialog(
                 setGarnishSecond()
             }
         }
+        binding.customImage.liquid.setColorFilter(Color.parseColor(color))
     }
 
     fun setIce(){

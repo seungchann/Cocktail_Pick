@@ -43,6 +43,12 @@ public class HomeTabFragment extends Fragment {
     MainViewModel viewModel;
     RetrofitService retrofitService;
 
+    String glass;
+    String garnishFirst;
+    String garnishSecond;
+    Integer ice;
+    String color;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
@@ -94,7 +100,7 @@ public class HomeTabFragment extends Fragment {
 
     private void createCustomDialog() {
         Dialog dialog;
-        dialog = new CustomDialog(requireContext());
+        dialog = new CustomDialog(requireContext(), getActivity().getSupportFragmentManager());
         dialog.show();
         dialog.getWindow().setLayout(1000, 1500);
     }
