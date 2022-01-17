@@ -74,4 +74,10 @@ data class Etc (
     var onz: Float,
 )
 
+data class Product (
+    var companyName: String,
+    var base: String,
+    var picture: Int,
+)
+
 
