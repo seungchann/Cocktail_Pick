@@ -38,17 +38,17 @@
                     android:id="@+id/summary_review_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxHeight="110dp"
                     android:text="호불호가 없는 재료들이기 때문에 모두가 좋아할 것 같다. 파인애플이 생각보다 비싸지 않아서"
                     android:textColor="@color/white"
-                    android:maxLines="3"
                     android:ellipsize="end"/>
             </LinearLayout>
 
         </LinearLayout>
 
         <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="200dp"
+            android:layout_width="130dp"
+            android:layout_height="170dp"
             android:layout_gravity="center">
             <include
                 android:id="@+id/firstCustom"
@@ -62,8 +62,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="40dp">
         <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="200dp"
+            android:layout_width="130dp"
+            android:layout_height="170dp"
             android:layout_gravity="center">
             <include
                 android:id="@+id/secondCustom"
