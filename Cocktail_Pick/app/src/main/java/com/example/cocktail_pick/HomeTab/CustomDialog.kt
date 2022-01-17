@@ -86,7 +86,7 @@ class CustomDialog(
         glassAdapter = GlassBtnAdapter(context)
         glassAdapter.setOnClickGlassItem = {
             glass = it
-            handler.setGlass(glass, ice, garnishFirst, garnishSecond, color, binding)
+            handler.setGlass(glass, ice, garnishFirst, garnishSecond, color, binding.customImage)
         }
         binding.glassBtn.adapter = glassAdapter
         binding.glassBtn.layoutManager = GridLayoutManager(context, 3)
@@ -96,7 +96,7 @@ class CustomDialog(
         firstGranishAdapter = FirstGarnishAdapter(context)
         firstGranishAdapter.setOnClickFirstGarnishItem = {
             garnishFirst = it
-            handler.setGarnishFirst(glass, garnishFirst, binding)
+            handler.setGarnishFirst(glass, garnishFirst, binding.customImage)
         }
         binding.firstGarnishBtn.adapter = firstGranishAdapter
         binding.firstGarnishBtn.layoutManager = GridLayoutManager(context, 3)
@@ -106,7 +106,7 @@ class CustomDialog(
         secondGarnishAdapter = SecondGarnishAdapter(context)
         secondGarnishAdapter.setOnClickSecondGarnishItem = {
             garnishSecond = it
-            handler.setGarnishSecond(glass, garnishSecond, binding)
+            handler.setGarnishSecond(glass, garnishSecond, binding.customImage)
         }
         binding.secondGarnishBtn.adapter = secondGarnishAdapter
         binding.secondGarnishBtn.layoutManager = GridLayoutManager(context, 3)
@@ -116,7 +116,7 @@ class CustomDialog(
         iceAdapter = IceBtnAdapter(context)
         iceAdapter.setOnClickIceItem = {
             ice = it
-            handler.setIce(glass, ice, binding)
+            handler.setIce(glass, ice, binding.customImage)
         }
         binding.iceBtn.adapter = iceAdapter
         binding.iceBtn.layoutManager = GridLayoutManager(context, 3)

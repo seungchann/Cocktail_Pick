@@ -5,86 +5,87 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.databinding.DialogCustomBinding
+import com.example.cocktail_pick.databinding.ItemCustomImageBinding
 
 class CustomHandler {
-    fun setGlass(glass: String, ice: Int, garnishFirst: String, garnishSecond: String, color: String, binding: DialogCustomBinding){
+    fun setGlass(glass: String, ice: Int, garnishFirst: String, garnishSecond: String, color: String, binding: ItemCustomImageBinding){
         when(glass){
             "칵테일 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_cocktail)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_cocktail)
+                binding.glass.setImageResource(R.drawable.glass_cocktail)
+                binding.liquid.setImageResource(R.drawable.liquid_cocktail)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "소서형 샴폐인" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_champagne)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_champagne)
+                binding.glass.setImageResource(R.drawable.glass_champagne)
+                binding.liquid.setImageResource(R.drawable.liquid_champagne)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "사워 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_sour)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_sour)
+                binding.glass.setImageResource(R.drawable.glass_sour)
+                binding.liquid.setImageResource(R.drawable.liquid_sour)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "풋티스 필스너" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_pilsner)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_pilsner)
+                binding.glass.setImageResource(R.drawable.glass_pilsner)
+                binding.liquid.setImageResource(R.drawable.liquid_pilsner)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "셰리 와인 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_sherry_wine)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_sherry_wine)
+                binding.glass.setImageResource(R.drawable.glass_sherry_wine)
+                binding.liquid.setImageResource(R.drawable.liquid_sherry_wine)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "와인 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_wine)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_wine)
+                binding.glass.setImageResource(R.drawable.glass_wine)
+                binding.liquid.setImageResource(R.drawable.liquid_wine)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "리큐르 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_liqueur)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_liqueur)
+                binding.glass.setImageResource(R.drawable.glass_liqueur)
+                binding.liquid.setImageResource(R.drawable.liquid_liqueur)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "올드 패션 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_old_fashion)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_old_fashion)
+                binding.glass.setImageResource(R.drawable.glass_old_fashion)
+                binding.liquid.setImageResource(R.drawable.liquid_old_fashion)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "하이볼 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_highball)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_highball)
+                binding.glass.setImageResource(R.drawable.glass_highball)
+                binding.liquid.setImageResource(R.drawable.liquid_highball)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
             "탐 콜린스 글라스" -> {
-                binding.customImage.glass.setImageResource(R.drawable.glass_tom_callins)
-                binding.customImage.liquid.setImageResource(R.drawable.liquid_tom_callins)
+                binding.glass.setImageResource(R.drawable.glass_tom_callins)
+                binding.liquid.setImageResource(R.drawable.liquid_tom_callins)
                 setIce(glass, ice, binding)
                 setGarnishFirst(glass, garnishFirst, binding)
                 setGarnishSecond(glass, garnishSecond, binding)
             }
         }
-        binding.customImage.liquid.setColorFilter(Color.parseColor(color))
+        binding.liquid.setColorFilter(Color.parseColor(color))
     }
 
-    fun setIce(glass: String, ice: Int, binding: DialogCustomBinding){
-        var iceView = binding.customImage.ice
+    fun setIce(glass: String, ice: Int, binding: ItemCustomImageBinding){
+        var iceView = binding.ice
         when (glass){
             "칵테일 글라스", "소서형 샴폐인" -> {
                 when(ice){
@@ -110,8 +111,8 @@ class CustomHandler {
         }
     }
 
-    fun setGarnishFirst(glass: String, garnishFirst: String, binding: DialogCustomBinding){
-        val garnishView = binding.customImage.garnishFirst
+    fun setGarnishFirst(glass: String, garnishFirst: String, binding: ItemCustomImageBinding){
+        val garnishView = binding.garnishFirst
         when(glass){
             "칵테일 글라스", "소서형 샴폐인" -> {
                 when(garnishFirst){
@@ -252,8 +253,8 @@ class CustomHandler {
         }
     }
 
-    fun setGarnishSecond(glass: String, garnishSecond: String, binding: DialogCustomBinding) {
-        val garnishView = binding.customImage.garnishSecond
+    fun setGarnishSecond(glass: String, garnishSecond: String, binding: ItemCustomImageBinding) {
+        val garnishView = binding.garnishSecond
         when (glass) {
             "칵테일 글라스", "소서형 샴폐인" -> {
                 when (garnishSecond) {
