@@ -25,6 +25,9 @@ interface RetrofitService {
     @GET("/user/post/")
     fun checkUserAccount(@Query("search") email: String): Call<List<Member>>
 
+    @GET("/tag/")
+    fun loadTagData(): Call<List<Tag>>
+
 
     companion object {
         var retrofitService: RetrofitService? = null
