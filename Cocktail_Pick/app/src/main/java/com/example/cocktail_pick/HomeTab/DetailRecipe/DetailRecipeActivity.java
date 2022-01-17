@@ -30,7 +30,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<String> steps;
     ImageView profile;
-    TextView name, cocktail_name, comment, heart_num;
+    TextView name, cocktail_name, comment, heart_num, posting;
     TextView base, base_onz, liqueur, liqueur_onz, etc, etc_onz, garnish;
     // FrameLayout? cocktail image, tag1, tag2
     ImageButton favorite_btn;
@@ -69,6 +69,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         onz_btn = findViewById(R.id.onz_btn);
         ml_btn = findViewById(R.id.ml_btn);
         comment.setMovementMethod(new ScrollingMovementMethod());
+        posting = findViewById(R.id.detail_posting);
 
         ImageView tag1_circle = tag1.findViewById(R.id.tag_circle_small);
         TextView tag1_text = tag1.findViewById(R.id.tag_text_small);
@@ -85,6 +86,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         base_onz.setText(recipe.getBase().getOnz() + " Oz");
         liqueur_onz.setText(recipe.getLiqueur().getOnz() + " Oz");
         etc_onz.setText(recipe.getEtc().getOnz() + " Oz");
+        posting.setText(recipe.getPosting());
 
         onz_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +99,13 @@ public class DetailRecipeActivity extends AppCompatActivity {
                 base_onz.setText(recipe.getBase().getOnz() + " Oz");
                 liqueur_onz.setText(recipe.getLiqueur().getOnz() + " Oz");
                 etc_onz.setText(recipe.getEtc().getOnz() + " Oz");
+            }
+        });
+
+        favorite_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
@@ -122,6 +131,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         comment.setText(recipe.getIntro());
         heart_num.setText(recipe.getLike_num() + "");
         base.setText(recipe.getBase().getName());
+
 
 
         liqueur.setText(recipe.getLiqueur().getName());
