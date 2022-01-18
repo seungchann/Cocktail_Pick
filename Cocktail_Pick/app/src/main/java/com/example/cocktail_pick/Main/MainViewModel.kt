@@ -13,9 +13,12 @@ import retrofit2.Response
 class MainViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "MainViewModel"
+    private val BASE = "BASE BASED"
     lateinit var currentUserEmail: String
+    lateinit var base: String
     var currentUser = MutableLiveData<List<Member>>()
     var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
+    var baseBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var productList = mutableListOf<Product>()
     /*
     val dataList = MutableLiveData<List<Int>>()
@@ -62,6 +65,24 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
 
             override fun onFailure(call: Call<List<RecipeReceive>>, t: Throwable) {
                 Log.e(TAG, t.message.toString())
+            }
+        })
+    }
+
+    fun loadBaseBasedRecipe(base: String) {
+        val response = repository.loadBaseBasedRecipe(base)
+        this.base = base
+        response.enqueue(object : Callback<List<RecipeReceive>> {
+            override fun onResponse(
+                call: Call<List<RecipeReceive>>,
+                response: Response<List<RecipeReceive>>
+            ) {
+                Log.d(BASE, "베이스 기반 레시피가 로드되었습니다.")
+                baseBasedRecipeList.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<RecipeReceive>>, t: Throwable) {
+                Log.e(BASE, t.message.toString())
             }
         })
     }

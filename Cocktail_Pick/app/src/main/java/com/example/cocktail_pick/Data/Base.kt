@@ -1,7 +1,7 @@
 package com.example.cocktail_pick.Data
 
 enum class Base {
-    VODKA, JEAN, TEQUILA, RUM, WISKY, SOJU, TRADITIONAL
+    VODKA, JEAN, TEQUILA, RUM, WISKY, SOJU
 }
 
 fun getBaseName(base: Base): String {
@@ -12,6 +12,5 @@ fun getBaseName(base: Base): String {
         Base.RUM -> return "럼"
         Base.WISKY -> return "위스키"
         Base.SOJU -> return "소주"
-        Base.TRADITIONAL -> return "전통주"
     }
 }

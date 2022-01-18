@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.example.cocktail_pick.Main.MainViewModelFactory;
 import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
 import com.mancj.materialsearchbar.MaterialSearchBar;
@@ -34,11 +36,13 @@ public class SearchTabFragment extends Fragment {
     private CustomSuggestionsAdapter customSuggestionsAdapter;
     private MaterialSearchBar searchBar;
     private List<Product> suggestions = new ArrayList<>();
+
     MainViewModel viewModel;
     RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
     ArrayList<Tag> tags;
     RecyclerView recyclerView;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
@@ -50,6 +54,7 @@ public class SearchTabFragment extends Fragment {
 
         init_tag();
         viewModel.initProductList();
+
         suggestions = (ArrayList<Product>) viewModel.getProductList();
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.tag_recycler_view);
@@ -60,6 +65,21 @@ public class SearchTabFragment extends Fragment {
         customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
         customSuggestionsAdapter.setSuggestions(suggestions);
         searchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
+
+
+        rootView.findViewById(R.id.base1_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.loadBaseBasedRecipe("진");
+                viewModel.getBaseBasedRecipeList().observe(getViewLifecycleOwner(), new Observer<List<RecipeReceive>>() {
+                    @Override
+                    public void onChanged(List<RecipeReceive> recipeReceives) {
+
+                    }
+                });
+
+            }
+        });
 
 
         searchBar.addTextChangeListener(new TextWatcher() {
@@ -76,7 +96,6 @@ public class SearchTabFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
 
         });
