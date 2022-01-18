@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
     Context context;
-    ArrayList<String> steps;
+    String[] steps;
 
-    public StepAdapter(Context context, ArrayList<String> steps) {
+    public StepAdapter(Context context, String[] steps) {
         this.context = context;
         this.steps = steps;
     }
@@ -35,13 +35,13 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String step = steps.get(position);
+        String step = steps[position];
         holder.step.setText((position + 1) + ". " + step);
     }
 
     @Override
     public int getItemCount() {
-        return steps.size();
+        return steps.length;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

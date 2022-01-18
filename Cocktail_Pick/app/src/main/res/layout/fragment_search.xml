@@ -63,7 +63,7 @@
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:layout_height="wrap_content"
-                            android:text="보드카 / 진"
+                            android:text="보드카"
                             android:textColor="@color/white"/>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -79,7 +79,7 @@
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:layout_height="wrap_content"
-                            android:text="데낄라 / 럼"
+                            android:text="진"
                             android:textColor="@color/white"/>
                     </androidx.cardview.widget.CardView>
                 </TableRow>
@@ -100,6 +100,43 @@
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:layout_height="wrap_content"
+                            android:text="데낄라"
+                            android:textColor="@color/white"/>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="20dp"
+                        android:backgroundTint="#C63360"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/base4_btn"
+                            android:layout_width="match_parent"
+                            android:background="@null"
+                            android:layout_height="wrap_content"
+                            android:text="럼"
+                            android:textColor="@color/white"/>
+                    </androidx.cardview.widget.CardView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp"
+                        android:backgroundTint="#A6A3CF"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/base5_btn"
+                            android:layout_width="match_parent"
+                            android:background="@null"
+                            android:layout_height="wrap_content"
                             android:text="위스키"
                             android:textColor="@color/white"/>
                     </androidx.cardview.widget.CardView>
@@ -112,11 +149,11 @@
                         android:layout_margin="15dp"
                         android:layout_weight="1">
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/base4_btn"
+                            android:id="@+id/base6_btn"
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:layout_height="wrap_content"
-                            android:text="소주 / 전통주"
+                            android:text="소주"
                             android:textColor="@color/white"/>
                     </androidx.cardview.widget.CardView>
                 </TableRow>

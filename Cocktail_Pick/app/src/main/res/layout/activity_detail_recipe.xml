@@ -151,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp">
                 <TableRow
+                    android:id="@+id/base_row"
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/detail_base"
@@ -181,6 +182,7 @@
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/liqueur_row"
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/detail_liqueur"
@@ -211,6 +213,38 @@
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/juice_row"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/detail_juice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="진저 에일"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/detail_juice_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 oz"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/etc_row"
                     android:padding="5dp">
                     <TextView
                         android:id="@+id/detail_etc"

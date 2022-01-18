@@ -47,10 +47,10 @@ import java.util.List;
 public class DetailRecipeActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<String> steps;
+    String[] steps;
     ImageView profile;
     TextView name, cocktail_name, comment, heart_num, posting;
-    TextView base, base_onz, liqueur, liqueur_onz, etc, etc_onz, garnish;
+    TextView base, base_onz, liqueur, liqueur_onz, etc, etc_onz, garnish, juice, juice_onz;
     // FrameLayout? cocktail image, tag1, tag2
     ImageButton favorite_btn;
     Button onz_btn, ml_btn;
@@ -77,7 +77,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         RecipeReceive recipe = (RecipeReceive) intent.getSerializableExtra("recipe");
 
-        init_step();
+        init_step(recipe);
         ONZ_FLAG = true;
 
         recyclerView = binding.stepRecyclerView;
@@ -96,6 +96,8 @@ public class DetailRecipeActivity extends AppCompatActivity {
         etc = binding.detailEtc;
         etc_onz = binding.detailEtcOnz;
         garnish = binding.detailGarnish;
+        juice = binding.detailJuice;
+        juice_onz = binding.detailJuiceOnz;
         ItemTagSmallBinding tag1 = binding.detailFirstTag;
         ItemTagSmallBinding tag2 = binding.detailSecondTag;
         favorite_btn = (ImageButton) binding.heartBtn;
@@ -146,6 +148,18 @@ public class DetailRecipeActivity extends AppCompatActivity {
         ImageView tag2_circle = tag2.tagCircleSmall;
         TextView tag2_text = tag2.tagTextSmall;
 
+        List<Integer> tags_int = recipe.getTags();
+        if (tags_int.size() == 0) {
+            tag1.tagWholeView.setVisibility(View.INVISIBLE);
+            tag2.tagWholeView.setVisibility(View.INVISIBLE);
+        } else if (tags_int.size() == 1) {
+            tag2.tagWholeView.setVisibility(View.INVISIBLE);
+        }
+        // TODO tags_int.get(0) 의 id로 찾아와서 set
+         if (tags_int.size() == 2) {
+             // tags_int.get(1) 의 id로 set
+         }
+
         handler.setGlass(recipe.getGlass(), recipe.getIce(), recipe.getGarnishFirst(), recipe.getGarnishSecond(), "#F9EEBA", detail_custom);
 
         ArrayList<Integer> tags = (ArrayList<Integer>) recipe.getTags();
@@ -158,6 +172,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
         base_onz.setText(recipe.getBaseOz() + " Oz");
         liqueur_onz.setText(recipe.getLiqueurOz() + " Oz");
         etc_onz.setText(recipe.getEtcOz() + " Oz");
+        juice_onz.setText(recipe.getJuiceOz() + " Oz");
         posting.setText(recipe.getPosting());
 
 
@@ -172,6 +187,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
                 base_onz.setText(recipe.getBaseOz() + " Oz");
                 liqueur_onz.setText(recipe.getLiqueurOz() + " Oz");
                 etc_onz.setText(recipe.getEtcOz() + " Oz");
+                juice_onz.setText(recipe.getJuiceOz() + " Oz");
             }
         });
 
@@ -196,6 +212,8 @@ public class DetailRecipeActivity extends AppCompatActivity {
                 liqueur_onz.setText(format + " ml");
                 format = String.format("%.1f", recipe.getEtcOz()*ONZ_ML);
                 etc_onz.setText(format + " ml");
+                format = String.format("%.1f", recipe.getJuiceOz()*ONZ_ML);
+                juice_onz.setText(format + " ml");
             }
         });
 
@@ -204,8 +222,18 @@ public class DetailRecipeActivity extends AppCompatActivity {
         comment.setText(recipe.getIntro());
         heart_num.setText(recipe.getLike_num() + "");
         base.setText(recipe.getBase());
+        if (recipe.getLiqueur() == "") {
+            binding.liqueurRow.setVisibility(View.INVISIBLE);
+        }
+        if (recipe.getJuice() == "") {
+            binding.juiceRow.setVisibility(View.INVISIBLE);
+        }
+        if (recipe.getEtc() == "") {
+            binding.etcRow.setVisibility(View.INVISIBLE);
+        }
         liqueur.setText(recipe.getLiqueur());
         etc.setText(recipe.getEtc());
+        juice.setText(recipe.getJuice());
 
 
         String garnishString = "";
@@ -217,11 +245,9 @@ public class DetailRecipeActivity extends AppCompatActivity {
     }
 
 
-    void init_step() {
-        steps = new ArrayList<>();
-        steps.add("텀블러에 보드카와 라임 주스를 넣는다.");
-        steps.add("얼음을 넣고 나머지를 진저에일로 채운다.");
-        steps.add("라임 슬라이스로 장식하고, 유리막대를 꽂는다.");
+    void init_step(RecipeReceive recipe) {
+        String recipe_all = recipe.getStep();
+        steps = recipe_all.split("\n");
     }
 
 }
