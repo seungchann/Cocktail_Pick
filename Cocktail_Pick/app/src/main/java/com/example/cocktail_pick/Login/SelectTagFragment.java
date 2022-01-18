@@ -65,7 +65,7 @@ public class SelectTagFragment extends Fragment {
             @Override
             public void onChanged(List<Tag> tags) {
 //                Log.d(TAG, tags.get(0).getTaste());
-                recyclerView.setAdapter(new SelectTagAdapter(getActivity(), (ArrayList<Tag>) tags, selected_tags));
+                recyclerView.setAdapter(new SelectTagAdapter(getActivity(), (ArrayList<Tag>) tags, selected_tags, false));
             }
         });
 

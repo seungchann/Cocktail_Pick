@@ -20,6 +20,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var baseBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var productList = mutableListOf<Product>()
+    var tagDataList = MutableLiveData<List<Tag>>()
     /*
     val dataList = MutableLiveData<List<Int>>()
 
@@ -97,6 +98,19 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
 
             override fun onFailure(call: Call<Recipe>, t: Throwable) {
                 Log.e(TAG, "레시피 포스팅에 실패하였습니다 : ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun loadTagData() {
+        val response = repository.loadTagData()
+        response.enqueue(object : Callback<List<Tag>> {
+            override fun onResponse(call: Call<List<Tag>>, response: Response<List<Tag>>) {
+                tagDataList.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Tag>>, t: Throwable) {
+                Log.e(TAG, "TAG 로드에 실패했습니다.")
             }
         })
     }

@@ -23,11 +23,13 @@ import java.util.ArrayList;
 public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.ViewHolder> {
     Context context;
     ArrayList<Tag> tags, selected_tags;
+    boolean flag;
 
-    public SelectTagAdapter(Context context, ArrayList<Tag> tags, ArrayList<Tag> selected_tags) {
+    public SelectTagAdapter(Context context, ArrayList<Tag> tags, ArrayList<Tag> selected_tags, boolean flag) {
         this.context = context;
         this.tags = tags;
         this.selected_tags = selected_tags;
+        this.flag = flag;
 
     }
     @NonNull
@@ -51,8 +53,10 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
                     selected_tags.remove(tag);
                     holder.card1.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
                 } else {
-                    if (selected_tags.size() == 3) {
-                        Toast.makeText(context, "최대 3개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                    int max_tag_num = 3;
+                    if (flag) max_tag_num = 2;
+                    if (selected_tags.size() == max_tag_num) {
+                        Toast.makeText(context, "최대 " + max_tag_num + "개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     selected_tags.add(tag);
@@ -63,6 +67,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
         if (tags.size()-1 == position*3) {
             holder.card2.setVisibility(View.INVISIBLE);
+            holder.card3.setVisibility(View.INVISIBLE);
             return;
         }
 
@@ -77,8 +82,10 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
                     selected_tags.remove(tag2);
                     holder.card2.setCardBackgroundColor(context.getResources().getColor(R.color.gray));
                 } else {
-                    if (selected_tags.size() == 3) {
-                        Toast.makeText(context, "최대 3개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                    int max_tag_num = 3;
+                    if (flag) max_tag_num = 2;
+                    if (selected_tags.size() == max_tag_num) {
+                        Toast.makeText(context, "최대 " + max_tag_num + "개까지 태그를 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     selected_tags.add(tag2);
