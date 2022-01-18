@@ -54,12 +54,19 @@ public class SearchTabFragment extends Fragment {
 
         init_tag();
         viewModel.initProductList();
+        viewModel.loadTagData();
 
         suggestions = (ArrayList<Product>) viewModel.getProductList();
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.tag_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new SearchTabAdapter(getActivity(), tags));
+        viewModel.getTagDataList().observe(getViewLifecycleOwner(), new Observer<List<Tag>>() {
+            @Override
+            public void onChanged(List<Tag> tags) {
+                recyclerView = (RecyclerView) rootView.findViewById(R.id.tag_recycler_view);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(new SearchTabAdapter(getActivity(), (ArrayList<Tag>)tags));
+            }
+        });
+
 
         searchBar = rootView.findViewById(R.id.search_bar);
         customSuggestionsAdapter = new CustomSuggestionsAdapter(getActivity(), inflater);

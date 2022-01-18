@@ -59,7 +59,6 @@ class LoginViewModel constructor(private val repository: MainRepository) : ViewM
                 if (response.body()?.size != 0) {
                     (context as LoginActivity).moveToMainActivity()
                 } else {
-//                    addMember(member)
                     (context as LoginActivity).moveToTagFragment()
                 }
             }

@@ -32,6 +32,8 @@ data class PreferUser (
 
 data class RecipeReceive (
     var id: Int,
+    @SerializedName("user_id")
+    var userId: Int,
     var intro: String,
     var alcohol: Int,
     var writer: String,
@@ -48,13 +50,21 @@ data class RecipeReceive (
     var garnishSecond: String,
     var posting: String,
     @SerializedName("base_name")
-    var base: BaseReceive,
+    var base: String,
+    @SerializedName("base_oz")
+    var baseOz: Float,
     @SerializedName("liqueur_name")
-    var liqueur: LiqueurReceive,
+    var liqueur: String,
+    @SerializedName("liqueur_oz")
+    var liqueurOz: Float,
     @SerializedName("juice_name")
-    var juice: JuiceReceive,
+    var juice: String,
+    @SerializedName("juice_oz")
+    var juiceOz: Float,
     @SerializedName("etc_name")
-    var etc: EtcReceive,
+    var etc: String,
+    @SerializedName("etc_oz")
+    var etcOz: Float,
     var like_num: Int,
     var prefer_user_lists: List<List<String>>,
     var step: String,

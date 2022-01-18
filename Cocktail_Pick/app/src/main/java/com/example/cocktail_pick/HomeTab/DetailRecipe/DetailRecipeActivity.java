@@ -155,10 +155,11 @@ public class DetailRecipeActivity extends AppCompatActivity {
         }
 
         // 베이스나 리큐르나 엑트가 없는 경우 예외처리. "" 뜨도록
-        base_onz.setText(recipe.getBase().getOnz() + " Oz");
-        liqueur_onz.setText(recipe.getLiqueur().getOnz() + " Oz");
-        etc_onz.setText(recipe.getEtc().getOnz() + " Oz");
+        base_onz.setText(recipe.getBaseOz() + " Oz");
+        liqueur_onz.setText(recipe.getLiqueurOz() + " Oz");
+        etc_onz.setText(recipe.getEtcOz() + " Oz");
         posting.setText(recipe.getPosting());
+
 
         onz_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,9 +169,9 @@ public class DetailRecipeActivity extends AppCompatActivity {
                 ml_btn.setBackground(getResources().getDrawable(R.drawable.btn_outline));
                 ml_btn.setTextColor(Color.WHITE);
 
-                base_onz.setText(recipe.getBase().getOnz() + " Oz");
-                liqueur_onz.setText(recipe.getLiqueur().getOnz() + " Oz");
-                etc_onz.setText(recipe.getEtc().getOnz() + " Oz");
+                base_onz.setText(recipe.getBaseOz() + " Oz");
+                liqueur_onz.setText(recipe.getLiqueurOz() + " Oz");
+                etc_onz.setText(recipe.getEtcOz() + " Oz");
             }
         });
 
@@ -189,11 +190,11 @@ public class DetailRecipeActivity extends AppCompatActivity {
                 ml_btn.setBackground(getResources().getDrawable(R.drawable.btn_fill));
                 ml_btn.setTextColor(Color.BLACK);
 
-                String format = String.format("%.1f", recipe.getBase().getOnz()*ONZ_ML);
+                String format = String.format("%.1f", recipe.getBaseOz()*ONZ_ML);
                 base_onz.setText(format + " ml");
-                format = String.format("%.1f", recipe.getLiqueur().getOnz()*ONZ_ML);
+                format = String.format("%.1f", recipe.getLiqueurOz()*ONZ_ML);
                 liqueur_onz.setText(format + " ml");
-                format = String.format("%.1f", recipe.getEtc().getOnz()*ONZ_ML);
+                format = String.format("%.1f", recipe.getEtcOz()*ONZ_ML);
                 etc_onz.setText(format + " ml");
             }
         });
@@ -202,9 +203,9 @@ public class DetailRecipeActivity extends AppCompatActivity {
         cocktail_name.setText(recipe.getCocktailName());
         comment.setText(recipe.getIntro());
         heart_num.setText(recipe.getLike_num() + "");
-        base.setText(recipe.getBase().getName());
-        liqueur.setText(recipe.getLiqueur().getName());
-        etc.setText(recipe.getEtc().getName());
+        base.setText(recipe.getBase());
+        liqueur.setText(recipe.getLiqueur());
+        etc.setText(recipe.getEtc());
 
 
         String garnishString = "";

@@ -1,6 +1,7 @@
 package com.example.cocktail_pick.SearchTab;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.View
 
         Tag tag = tags.get(position*2);
         holder.tag1.setText(tag.getTaste());
-        holder.circle1.setColorFilter(R.color.red, PorterDuff.Mode.MULTIPLY);
+        holder.circle1.setColorFilter(Color.parseColor(tag.getColor()), PorterDuff.Mode.MULTIPLY);
         if (tags.size()-1 == position*2) {
             holder.card2.setVisibility(View.INVISIBLE);
             return;
@@ -51,7 +52,7 @@ public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.View
         tag = tags.get(position*2+1);
         //holder.circle1.set
         holder.tag2.setText(tag.getTaste());
-        holder.circle2.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.MULTIPLY);
+        holder.circle2.setColorFilter(Color.parseColor(tag.getColor()), PorterDuff.Mode.MULTIPLY);
     }
 
     @Override

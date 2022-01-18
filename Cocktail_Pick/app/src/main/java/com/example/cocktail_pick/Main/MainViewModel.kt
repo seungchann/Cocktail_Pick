@@ -125,6 +125,18 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
             productList.add(Product("바카디", "Rum",R.drawable.bacardi))
     }
 
+    fun loadTagData() {
+        val response = repository.loadTagData()
+        response.enqueue(object : Callback<List<Tag>> {
+            override fun onResponse(call: Call<List<Tag>>, response: Response<List<Tag>>) {
+                tagDataList.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Tag>>, t: Throwable) {
+                Log.e(TAG, "TAG 로드에 실패했습니다.")
+            }
+        })
+    }
 
 
 }
