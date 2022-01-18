@@ -19,7 +19,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/add_tag_recycler_view"
                 android:layout_gravity="center"
-                android:layout_margin="20dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"/>
 

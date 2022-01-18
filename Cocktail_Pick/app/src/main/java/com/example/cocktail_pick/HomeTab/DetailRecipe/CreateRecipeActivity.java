@@ -3,8 +3,10 @@ package com.example.cocktail_pick.HomeTab.DetailRecipe;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ import com.example.cocktail_pick.databinding.FragmentAddRecipeBinding;
 import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
 import com.example.cocktail_pick.databinding.ItemTagSmallBinding;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CreateRecipeActivity extends AppCompatActivity {
@@ -58,6 +61,30 @@ public class CreateRecipeActivity extends AppCompatActivity {
     ArrayList<EditText> recipes;
     ArrayList<Tag> selected_tags;
     AddRecipeAdapter addRecipeAdapter;
+    ItemTagSmallBinding tag1, tag2;
+
+    public void setSelectedTags(ArrayList<Tag> selected_tags) {
+        this.selected_tags = selected_tags;
+    }
+
+    public void setTagView() {
+        Log.d("############333333", selected_tags.size() + "SIZE!!");
+        if (selected_tags.size() == 0) {
+            tag1.tagWholeView.setVisibility(View.INVISIBLE);
+            tag2.tagWholeView.setVisibility(View.INVISIBLE);
+            return;
+        } else if (selected_tags.size() == 1) {
+            tag2.tagWholeView.setVisibility(View.INVISIBLE);
+        }
+        tag1.tagWholeView.setVisibility(View.VISIBLE);
+        tag1.tagCircleSmall.setColorFilter(Color.parseColor(selected_tags.get(0).getColor()), PorterDuff.Mode.MULTIPLY);
+        tag1.tagTextSmall.setText(selected_tags.get(0).getTaste());
+        if (selected_tags.size() == 2) {
+            tag2.tagWholeView.setVisibility(View.VISIBLE);
+            tag2.tagCircleSmall.setColorFilter(Color.parseColor(selected_tags.get(1).getColor()), PorterDuff.Mode.MULTIPLY);
+            tag2.tagTextSmall.setText(selected_tags.get(1).getTaste());
+        }
+    }
 
     public class CustomImage {
         String glass;
@@ -115,8 +142,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         liqueur_onz = binding.addLiqueurOnz;
         etc = binding.addEtc;
         etc_onz = binding.addEtcOnz;
-        ItemTagSmallBinding tag1 = binding.detailFirstTag;
-        ItemTagSmallBinding tag2 = binding.detailSecondTag;
+        tag1 = binding.detailFirstTag;
+        tag2 = binding.detailSecondTag;
         onz_btn = binding.onzBtn;
         ml_btn = binding.mlBtn;
         comment.setMovementMethod(new ScrollingMovementMethod());
@@ -127,6 +154,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         add_custom_btn = binding.addCustomBtn;
         add_recipe_btn = binding.addRecipeBtn;
 
+        tag1.tagWholeView.setVisibility(View.INVISIBLE);
+        tag2.tagWholeView.setVisibility(View.INVISIBLE);
         select_tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,6 +264,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 // 아래 두개도 같이 저장하면 됨!
 //                selected_base;
 //                customImage
+//                selected_tags
 
 
             }
