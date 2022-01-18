@@ -31,6 +31,9 @@ interface RetrofitService {
     @GET("/recipe/tag/")
     fun loadTagBasedRecipe(): Call<List<RecipeReceive>>
 
+    @POST("/recipe/post/")
+    fun addRecipe(@Body recipe: Recipe): Call<Recipe>
+
 
     companion object {
         var retrofitService: RetrofitService? = null
