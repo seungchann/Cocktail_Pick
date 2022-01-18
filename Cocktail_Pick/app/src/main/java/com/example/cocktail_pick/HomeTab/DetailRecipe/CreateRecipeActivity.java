@@ -336,14 +336,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
 //
                     }
                 });
-                  viewModel.getRecipePost().observe((LifecycleOwner) context, new Observer<Recipe>() {
+                viewModel.getRecipePost().observe((LifecycleOwner) context, new Observer<Recipe>() {
 
                     @Override
                     public void onChanged(Recipe recipe) {
 
                     }
                 });
-
                   Intent intent = new Intent(context, MainActivity.class);
                   startActivity(intent);
             }

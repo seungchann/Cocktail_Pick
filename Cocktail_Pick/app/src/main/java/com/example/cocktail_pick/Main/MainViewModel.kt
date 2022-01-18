@@ -122,13 +122,15 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     }
 
     fun initProductList() {
+        if (productList.size == 0) {
             productList.add(Product("잭 다니엘", "Whiskey", R.drawable.jack_danial))
             productList.add(Product("메이커스 마크", "Whiskey", R.drawable.makersmark))
             productList.add(Product("앱솔루트", "Vodka", R.drawable.absolute))
-            productList.add(Product("호셀 쿠엘보", "Tequila", R.drawable.josecuervo))
+            productList.add(Product("호세 쿠엘보", "Tequila", R.drawable.josecuervo))
             productList.add(Product("참이슬","Soju",R.drawable.cham))
             productList.add(Product("봄베이 사파이어","Gin",R.drawable.bombay))
             productList.add(Product("바카디", "Rum",R.drawable.bacardi))
+        }
     }
 
     fun loadTagData() {

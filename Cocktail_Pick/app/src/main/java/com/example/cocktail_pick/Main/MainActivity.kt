@@ -60,10 +60,10 @@ class MainActivity : AppCompatActivity() {
         main_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
-                    0 -> { replaceView(tab1) }
-                    1 -> { replaceView(tab2) }
-                    2 -> { replaceView(tab3) }
-                    3 -> { replaceView(tab4) }
+                    0 -> { replaceView(HomeTabFragment()) }
+                    1 -> { replaceView(SearchTabFragment()) }
+                    2 -> { replaceView(RecommendTabFragment()) }
+                    3 -> { replaceView(MyPageTabFragment()) }
                 }
             }
 
