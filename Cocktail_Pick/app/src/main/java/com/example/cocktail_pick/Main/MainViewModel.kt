@@ -22,6 +22,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     var baseBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var productList = mutableListOf<Product>()
     var tagDataList = MutableLiveData<List<Tag>>()
+    var myBaseList = mutableListOf<Product>()
     /*
     val dataList = MutableLiveData<List<Int>>()
 

@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.Data.Cocktail;
+import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
 
 import java.util.ArrayList;
@@ -23,10 +24,10 @@ import java.util.ArrayList;
 public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendViewPagerAdapter.ViewHolderPage> {
 
     Context context;
-    ArrayList<Cocktail> cocktails;
+    ArrayList<Product> cocktails;
     public boolean cancel_flag = false;
 
-    public RecommendViewPagerAdapter(Context context, ArrayList<Cocktail> cocktails) {
+    public RecommendViewPagerAdapter(Context context, ArrayList<Product> cocktails) {
         this.context = context;
         this.cocktails = cocktails;
     }
@@ -44,10 +45,10 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
         for (i = 0; i < 6; i++) {
             int this_pos = position + i;
             if (cocktails.size() == this_pos) break;
-            Cocktail cocktail = cocktails.get(this_pos);
+            Product cocktail = cocktails.get(this_pos);
 
-            holder.images[i].setImageResource(R.drawable.jack_danial);
-            holder.texts[i].setText(cocktail.getName());
+            holder.images[i].setImageResource(cocktail.getPicture());
+            holder.texts[i].setText(cocktail.getCompanyName());
 
             holder.cancel_view[i].setVisibility(View.INVISIBLE);
             holder.item_buys[i].clearAnimation();

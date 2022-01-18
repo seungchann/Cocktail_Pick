@@ -343,6 +343,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
                     }
                 });
+                  Intent intent = new Intent(context, MainActivity.class);
+                  startActivity(intent);
             }
         });
     }
