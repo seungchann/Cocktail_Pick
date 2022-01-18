@@ -17,6 +17,7 @@ data class UserReceive (
     var recipes: List<RecipeReceive>
 ): Serializable
 
+
 data class TagReceive (
     var id: Int,
     var color: String,

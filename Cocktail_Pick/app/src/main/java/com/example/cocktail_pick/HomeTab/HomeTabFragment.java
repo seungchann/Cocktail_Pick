@@ -1,6 +1,7 @@
 package com.example.cocktail_pick.HomeTab;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.HomeTab.DetailRecipe.CreateRecipeActivity;
 import com.example.cocktail_pick.Main.MainViewModel;
 import com.example.cocktail_pick.Main.MainViewModelFactory;
 import com.example.cocktail_pick.MainRepository;
@@ -29,6 +31,7 @@ import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +43,8 @@ public class HomeTabFragment extends Fragment {
     TextView profileName;
     SummaryAdapter summaryAdapter;
     ArrayList<Recipe> recipes;
-    Button testbtn;
     MainViewModel viewModel;
+    FloatingActionButton fab;
     RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
     String glass;
@@ -62,6 +65,7 @@ public class HomeTabFragment extends Fragment {
 
         init_recipes();
 
+        fab = rootView.findViewById(R.id.fab);
         profileImage = rootView.findViewById(R.id.profile_image);
         profileName = rootView.findViewById(R.id.profile_text);
         recyclerView = rootView.findViewById(R.id.summary_recycler_view);
@@ -74,13 +78,11 @@ public class HomeTabFragment extends Fragment {
             }
         });
 
-
-        testbtn = rootView.findViewById(R.id.testBtn);
-        testbtn.setOnClickListener(new Button.OnClickListener() {
-
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createCustomDialog();
+                Intent intent = new Intent(getActivity(), CreateRecipeActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -103,12 +105,5 @@ public class HomeTabFragment extends Fragment {
 //            recipes.add(new Recipe());
         }
 
-    }
-
-    private void createCustomDialog() {
-        Dialog dialog;
-        dialog = new CustomDialog(requireContext(), getActivity().getSupportFragmentManager());
-        dialog.show();
-        dialog.getWindow().setLayout(1000, 1500);
     }
 }

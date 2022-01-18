@@ -45,6 +45,7 @@
         </activity>
 
         <activity android:name=".HomeTab.DetailRecipe.DetailRecipeActivity"/>
+        <activity android:name=".HomeTab.DetailRecipe.CreateRecipeActivity"/>
     </application>
 
 </manifest>

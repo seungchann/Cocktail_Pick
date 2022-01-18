@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.cocktail_pick.HomeTab.DetailRecipe.CreateRecipeActivity
 import com.example.cocktail_pick.R
 import com.example.cocktail_pick.databinding.DialogCustomBinding
 import vadiole.colorpicker.ColorModel
@@ -20,6 +21,7 @@ import com.example.cocktail_pick.HomeTab.CustomHandler as CustomHandler
 class CustomDialog(
     private var _context: Context,
     private var fragmentManager: FragmentManager,
+    private var customImage: CreateRecipeActivity.CustomImage,
 ) : Dialog(_context) {
 
     private lateinit var glassAdapter: GlassBtnAdapter
@@ -34,6 +36,8 @@ class CustomDialog(
     var garnishFirst = "체리"
     var garnishSecond = "허브"
     var color = "#f9eeba"
+
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +76,8 @@ class CustomDialog(
                 }
                 MotionEvent.ACTION_UP -> {
                     binding.createBtn.setRotation(-30f)
+                    customImage.setProperty(glass, ice, garnishFirst, garnishSecond, color);
+                    (_context as CreateRecipeActivity).setImage();
                     dismiss()
                     false
                 }
