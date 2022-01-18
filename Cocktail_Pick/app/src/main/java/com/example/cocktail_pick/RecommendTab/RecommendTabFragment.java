@@ -1,5 +1,6 @@
 package com.example.cocktail_pick.RecommendTab;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,24 +12,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cocktail_pick.Data.Cocktail;
 import com.example.cocktail_pick.HomeTab.SummaryAdapter;
+import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
+import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
+import com.example.cocktail_pick.RetrofitService;
 
 import java.util.ArrayList;
 
 public class RecommendTabFragment extends Fragment {
     ViewPager2 viewPager;
-    ArrayList<Cocktail> cocktails;
+    ArrayList<Product> cocktails;
     RecommendViewPagerAdapter buying_adapter;
     RecyclerView recommend_recycler_view;
     SummaryAdapter summary_adapter;
     Button addBtn, removeBtn;
+    MainViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
     ArrayList<Recipe> recommendRecipes;
 
@@ -40,7 +49,11 @@ public class RecommendTabFragment extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_recommend, container, false);
 
-        initCocktails();
+        viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        viewModel.initProductList();
+        cocktails = (ArrayList<Product>) viewModel.getProductList();
+        Context context = getActivity();
+
         initRecommendRecipes();
         viewPager = rootView.findViewById(R.id.buy_view_pager);
         buying_adapter = new RecommendViewPagerAdapter(getActivity(), cocktails);
@@ -57,7 +70,8 @@ public class RecommendTabFragment extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity(), cocktails);
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(), "bottomsheet");
             }
         });
 
@@ -71,14 +85,6 @@ public class RecommendTabFragment extends Fragment {
 
 
         return rootView;
-    }
-
-    void initCocktails() {
-        cocktails = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            cocktails.add(new Cocktail("잭 다니엘", ""));
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
