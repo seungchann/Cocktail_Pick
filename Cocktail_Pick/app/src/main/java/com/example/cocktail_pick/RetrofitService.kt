@@ -31,6 +31,9 @@ interface RetrofitService {
     @GET("/recipe/tag/")
     fun loadTagBasedRecipe(): Call<List<RecipeReceive>>
 
+    @GET("/user/")
+    fun loadCurrentAccount(@Query("search") email: String): Call<List<UserReceive>>
+
 
     @POST("/recipe/")
     fun addRecipe(@Body recipe: Recipe): Call<Recipe>

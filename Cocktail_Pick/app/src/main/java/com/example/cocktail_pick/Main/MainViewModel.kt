@@ -17,7 +17,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     var currentUserEmail = "dycha0430@gmail.com"
     lateinit var base: String
     var recipePost = MutableLiveData<Recipe>()
-    var currentUser = MutableLiveData<List<Member>>()
+    var currentUser = MutableLiveData<List<UserReceive>>()
     var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var baseBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var productList = mutableListOf<Product>()
@@ -40,19 +40,36 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
     }
      */
 
-    fun loadUserAccount() {
-        val response = repository.checkUserAccount(currentUserEmail)
-        response.enqueue(object : Callback<List<Member>> {
-            override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
+    fun loadCurrentAccount() {
+        val response = repository.loadCurrentAccount(currentUserEmail)
+        response.enqueue(object : Callback<List<UserReceive>> {
+            override fun onResponse(
+                call: Call<List<UserReceive>>,
+                response: Response<List<UserReceive>>
+            ) {
                 Log.d(TAG, "유저가 로드되었습니다.")
                 currentUser.postValue(response.body())
             }
 
-            override fun onFailure(call: Call<List<Member>>, t: Throwable) {
-                Log.e(TAG, "유저 로드에 실패했습니다.")
+            override fun onFailure(call: Call<List<UserReceive>>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
             }
         })
     }
+
+//    fun loadUserAccount() {
+//        val response = repository.checkUserAccount(currentUserEmail)
+//        response.enqueue(object : Callback<List<Member>> {
+//            override fun onResponse(call: Call<List<Member>>, response: Response<List<Member>>) {
+//                Log.d(TAG, "유저가 로드되었습니다.")
+//                currentUser.postValue(response.body())
+//            }
+//
+//            override fun onFailure(call: Call<List<Member>>, t: Throwable) {
+//                Log.e(TAG, "유저 로드에 실패했습니다.")
+//            }
+//        })
+//    }
 
     fun loadTagBasedRecipe() {
         val response = repository.loadTagBasedRecipe()

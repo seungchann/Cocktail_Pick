@@ -44,6 +44,7 @@ import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
+import com.example.cocktail_pick.UserReceive;
 import com.example.cocktail_pick.databinding.ActivityDetailRecipeBinding;
 import com.example.cocktail_pick.databinding.FragmentAddRecipeBinding;
 import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
@@ -140,9 +141,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
 
         customImage = new CustomImage();
-        Intent intent = new Intent();
-//        String email = intent.getStringExtra("email");
-//        viewModel.setCurrentUserEmail(email);
         context = this;
         selected_tags = new ArrayList<>();
         recipes = new ArrayList<>();
@@ -294,15 +292,15 @@ public class CreateRecipeActivity extends AppCompatActivity {
                     recipe_string += recipe_et.getText().toString() + "\n";
                 }
 
-                viewModel.loadUserAccount();
+                viewModel.loadCurrentAccount();
                 String finalRecipe_string = recipe_string;
                 float finalEtc_onz_float = etc_onz_float;
                 float finalLiqueur_onz_float = liqueur_onz_float;
                 float finalBase_onz_float = base_onz_float;
-                viewModel.getCurrentUser().observe((LifecycleOwner) context, new Observer<List<Member>>() {
+                viewModel.getCurrentUser().observe((LifecycleOwner) context, new Observer<List<UserReceive>>() {
                     @Override
-                    public void onChanged(List<Member> members) {
-                        Recipe recipe = new Recipe(4
+                    public void onChanged(List<UserReceive> userReceives) {
+                        Recipe recipe = new Recipe(userReceives.get(0).getId()
                                 ,comment_string
                                 ,cocktail_name_string
                                 ,customImage.glass

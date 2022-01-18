@@ -12,9 +12,8 @@ data class UserReceive (
     var profileURL: String,
     @SerializedName("prefer_recipe_list")
     var preferRecipeList: List<RecipeReceive>,
-    @SerializedName("my_tag")
-    var myTag: List<String>,
-    var recipes: List<RecipeReceive>
+    var tag: List<Int> = ArrayList<Int>(),
+    var recipes: List<RecipeReceive>,
 ): Serializable
 
 
@@ -68,6 +67,10 @@ data class RecipeReceive (
     var like_num: Int,
     var prefer_user_lists: List<List<String>>,
     var step: String,
+): Serializable
+
+data class RecipeReceiveList (
+    var recipeList: ArrayList<RecipeReceive>,
 ): Serializable
 
 data class BaseReceive (

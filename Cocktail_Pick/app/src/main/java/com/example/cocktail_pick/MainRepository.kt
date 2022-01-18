@@ -1,5 +1,8 @@
 package com.example.cocktail_pick
 
+import retrofit2.Call
+import retrofit2.http.Query
+
 class MainRepository constructor(private val retrofitService: RetrofitService) {
 
     /*
@@ -12,5 +15,6 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
     fun loadTagBasedRecipe() = retrofitService.loadTagBasedRecipe()
     fun loadBaseBasedRecipe(base: String) = retrofitService.loadBaseBasedRecipe(base)
     fun addRecipe(recipe: Recipe) = retrofitService.addRecipe(recipe)
+    fun loadCurrentAccount(email: String) = retrofitService.loadCurrentAccount(email)
 
 }

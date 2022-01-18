@@ -36,6 +36,7 @@ import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
+import com.example.cocktail_pick.UserReceive;
 import com.example.cocktail_pick.databinding.ActivityDetailRecipeBinding;
 import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
 import com.example.cocktail_pick.databinding.ItemTagSmallBinding;
@@ -111,11 +112,11 @@ public class DetailRecipeActivity extends AppCompatActivity {
             String name = prefer_user.get(0);
             String profile_url = prefer_user.get(1);
 
-            viewModel.getCurrentUser().observe(this, new Observer<List<Member>>() {
+            viewModel.getCurrentUser().observe(this, new Observer<List<UserReceive>>() {
                 @Override
-                public void onChanged(List<Member> members) {
+                public void onChanged(List<UserReceive> userReceives) {
                     // email로 해야 맞을듯하지만..
-                    if (members.get(0).getProfileURL().equals(profile_url)) {
+                    if (userReceives.get(0).getProfileURL().equals(profile_url)) {
                         favorite_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_favorite_24, getApplicationContext().getTheme()));
                     } else {
                         Log.d("##########", "Click!!!");

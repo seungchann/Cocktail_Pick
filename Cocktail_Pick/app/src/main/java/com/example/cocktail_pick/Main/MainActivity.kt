@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.currentUserEmail = intent.getSerializableExtra("email") as String
 //        viewModel.currentUserEmail = "dycha0430@gmail.com"
-        viewModel.loadUserAccount()
+        viewModel.loadCurrentAccount()
 
         tab1 = HomeTabFragment()
         tab2 = SearchTabFragment()

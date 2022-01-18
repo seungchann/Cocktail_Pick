@@ -30,6 +30,7 @@ import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.User;
+import com.example.cocktail_pick.UserReceive;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class MyPageTabFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         viewModel = new ViewModelProvider(getActivity(), new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
-        viewModel.loadUserAccount();
+        viewModel.loadCurrentAccount();
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_mypage, container, false);
         my_tag_recycler_view = rootView.findViewById(R.id.my_tag_recycler_view);
@@ -70,11 +71,11 @@ public class MyPageTabFragment extends Fragment {
         my_profile_image_view = rootView.findViewById(R.id.my_profile_image_view);
         my_name_text_view = rootView.findViewById(R.id.my_name_text_view);
 
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<Member>>() {
+        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<UserReceive>>() {
             @Override
-            public void onChanged(List<Member> members) {
-                my_name_text_view.setText(members.get(0).getUserName());
-                Glide.with(getActivity()).load(members.get(0).getProfileURL()).into(my_profile_image_view);
+            public void onChanged(List<UserReceive> userReceives) {
+                my_name_text_view.setText(userReceives.get(0).getUserName());
+                Glide.with(getActivity()).load(userReceives.get(0).getProfileURL()).into(my_profile_image_view);
             }
         });
         whole_view = rootView.findViewById(R.id.my_page_whole_view);

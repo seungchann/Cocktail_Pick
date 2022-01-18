@@ -29,6 +29,7 @@ import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
+import com.example.cocktail_pick.UserReceive;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -75,11 +76,11 @@ public class HomeTabFragment extends Fragment {
             @Override
             public void onChanged(List<RecipeReceive> recipeReceives) {
                 recipes = new ArrayList<RecipeReceive>();
-                viewModel.loadUserAccount();
-                viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<Member>>() {
+                viewModel.loadCurrentAccount();
+                viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<UserReceive>>() {
                     @Override
-                    public void onChanged(List<Member> members) {
-                        members.get(0).getTag().forEach(new Consumer<Integer>() {
+                    public void onChanged(List<UserReceive> userReceives) {
+                        userReceives.get(0).getTag().forEach(new Consumer<Integer>() {
                             @Override
                             public void accept(Integer integer) {
                                 recipeReceives.forEach(new Consumer<RecipeReceive>() {
@@ -156,15 +157,14 @@ public class HomeTabFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CreateRecipeActivity.class);
-//                intent.putExtra("email",viewModel.getCurrentUserEmail());
                 startActivity(intent);
             }
         });
 
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<Member>>() {
+        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), new Observer<List<UserReceive>>() {
             @Override
-            public void onChanged(List<Member> members) {
-                Log.d(TAG, members.get(0).getUserName());
+            public void onChanged(List<UserReceive> userReceives) {
+                Log.d(TAG, userReceives.get(0).getUserName());
             }
         });
 
