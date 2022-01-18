@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Main.MainActivity;
+import com.example.cocktail_pick.Main.RecipeFragment;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Tag;
 
@@ -53,6 +55,13 @@ public class SearchTabAdapter extends RecyclerView.Adapter<SearchTabAdapter.View
         //holder.circle1.set
         holder.tag2.setText(tag.getTaste());
         holder.circle2.setColorFilter(Color.parseColor(tag.getColor()), PorterDuff.Mode.MULTIPLY);
+
+        holder.tag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) context).replaceView(new RecipeFragment(2));
+            }
+        });
     }
 
     @Override

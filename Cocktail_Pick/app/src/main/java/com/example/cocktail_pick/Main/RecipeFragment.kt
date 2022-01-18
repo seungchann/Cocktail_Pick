@@ -23,12 +23,13 @@ import com.kakao.sdk.auth.model.OAuthToken
 import java.lang.IllegalStateException
 import java.util.ArrayList
 
-class RecipeFragment : Fragment() {
+class RecipeFragment(option: Int) : Fragment() {
 
     private val TAG = "RecipeFragment"
     private val retrofitService = RetrofitService.getInstance()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val optionNum = option
 
     private lateinit var viewModel: MainViewModel
     private lateinit var summaryAdapter: SummaryAdapter
@@ -47,11 +48,33 @@ class RecipeFragment : Fragment() {
         viewModel.loadTagBasedRecipe()
 
         recyclerView = binding.summaryRecyclerView
-        viewModel.tagBasedRecipeList.observe(viewLifecycleOwner, Observer {
-            summaryAdapter = SummaryAdapter(activity, (it as ArrayList<RecipeReceive>))
-            recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = summaryAdapter
-        })
+        when(optionNum) {
+            0 -> {
+                viewModel.loadBaseBasedRecipe("SOJU")
+                viewModel.baseBasedRecipeList.observe(viewLifecycleOwner, {
+                    summaryAdapter = SummaryAdapter(activity, (it as ArrayList<RecipeReceive>))
+                    recyclerView.layoutManager = LinearLayoutManager(activity)
+                    recyclerView.adapter = summaryAdapter
+                })
+            }
+            1 -> {
+                viewModel.loadBaseBasedRecipe("VODKA")
+                viewModel.baseBasedRecipeList.observe(viewLifecycleOwner, {
+                    summaryAdapter = SummaryAdapter(activity, (it as ArrayList<RecipeReceive>))
+                    recyclerView.layoutManager = LinearLayoutManager(activity)
+                    recyclerView.adapter = summaryAdapter
+                })
+            }
+            else -> {
+                viewModel.loadTagBasedRecipe()
+                viewModel.tagBasedRecipeList.observe(viewLifecycleOwner, {
+                    summaryAdapter = SummaryAdapter(activity, (it as ArrayList<RecipeReceive>))
+                    recyclerView.layoutManager = LinearLayoutManager(activity)
+                    recyclerView.adapter = summaryAdapter
+                })
+            }
+        }
+
 
         // Inflate the layout for this fragment
         return binding.root
