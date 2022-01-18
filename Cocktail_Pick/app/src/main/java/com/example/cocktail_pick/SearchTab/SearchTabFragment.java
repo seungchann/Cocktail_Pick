@@ -62,7 +62,7 @@ public class SearchTabFragment extends Fragment {
         recyclerView.setAdapter(new SearchTabAdapter(getActivity(), tags));
 
         searchBar = rootView.findViewById(R.id.search_bar);
-        customSuggestionsAdapter = new CustomSuggestionsAdapter(inflater);
+        customSuggestionsAdapter = new CustomSuggestionsAdapter(getActivity(), inflater);
         customSuggestionsAdapter.setSuggestions(suggestions);
         searchBar.setCustomSuggestionAdapter(customSuggestionsAdapter);
 

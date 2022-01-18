@@ -33,29 +33,29 @@ data class Tag (
 ): Serializable
 
 data class Recipe (
-    @SerializedName("user_id")
-    var userId: Int,
     var intro: String,
     var alcohol: Int,
     @SerializedName("cocktail_name")
     var cocktailName: String,
+    @SerializedName("cocktail_color")
     var glass: String,
     var ice: Int,
     @SerializedName("garnish_first")
     var garnishFirst: String,
     @SerializedName("garnish_second")
     var garnishSecond: String,
-    var base: Int,
-    var juice: Int,
-    var liqueur: Int,
-    var etc: Int,
     var posting: String,
+    var tags: List<Int>,
+    var base: Base,
+    var juice: Juice,
+    var liqueur: Liqueur,
+    var etc: Etc,
+    var step: String,
 ):Serializable
 
 data class Base (
     var name: String,
     var onz: Float,
-    var company: String,
 )
 
 data class Juice (
@@ -78,6 +78,6 @@ data class Product (
     var companyName: String,
     var base: String,
     var picture: Int,
-)
+):Serializable
 
 
