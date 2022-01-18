@@ -39,6 +39,7 @@ import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
+import com.example.cocktail_pick.Tag;
 import com.example.cocktail_pick.UserReceive;
 import com.example.cocktail_pick.databinding.ActivityDetailRecipeBinding;
 import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
@@ -166,8 +167,25 @@ public class DetailRecipeActivity extends AppCompatActivity {
         } else if (tags_int.size() == 1) {
             tag2.tagWholeView.setVisibility(View.INVISIBLE);
         }
+        ArrayList<Tag> tagList = new ArrayList<Tag>();
+        if(tagList.size()==0) {
+            tagList.add(new Tag(5, "#941100","달달한"));
+            tagList.add(new Tag(6, "#521B93","술맛이강한"));
+            tagList.add(new Tag(7, "#d4fb79","상큼한"));
+            tagList.add(new Tag(8, "#ffffff","깔끔한"));
+            tagList.add(new Tag(9, "#008f00","가벼운"));
+            tagList.add(new Tag(10, "#ff2600","탄산이있는"));
+            tagList.add(new Tag(11, "#ff2600","도수가높은"));
+            tagList.add(new Tag(12, "#005493","부드러운"));
+        }
+
+        tag1.tagCircleSmall.setColorFilter(Color.parseColor(tagList.get(tags_int.get(0)-5).getColor()));
+        tag1.tagTextSmall.setText(tagList.get(tags_int.get(0)-5).getTaste());
         // TODO tags_int.get(0) 의 id로 찾아와서 set
          if (tags_int.size() == 2) {
+
+             tag2.tagCircleSmall.setColorFilter(Color.parseColor(tagList.get(tags_int.get(1)-5).getColor()));
+             tag2.tagTextSmall.setText(tagList.get(tags_int.get(1)-5).getTaste());
              // tags_int.get(1) 의 id로 set
          }
 

@@ -1,6 +1,7 @@
 package com.example.cocktail_pick.HomeTab;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class RecipeTagAdapter extends RecyclerView.Adapter<RecipeTagAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Tag tag = tags.get(position);
         holder.tag_color.setImageResource(R.drawable.circle); // TODO
+        holder.tag_color.setColorFilter(Color.parseColor(tag.getColor()));
         holder.tag_taste.setText(tag.getTaste());
     }
 

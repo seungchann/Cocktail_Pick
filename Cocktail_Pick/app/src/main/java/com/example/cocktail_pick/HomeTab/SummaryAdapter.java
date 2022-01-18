@@ -20,6 +20,7 @@ import com.example.cocktail_pick.HomeTab.DetailRecipe.DetailRecipeActivity;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.Recipe;
 import com.example.cocktail_pick.RecipeReceive;
+import com.example.cocktail_pick.Tag;
 import com.example.cocktail_pick.databinding.ActivityLoginBinding;
 import com.example.cocktail_pick.databinding.ItemCustomImageBinding;
 import com.example.cocktail_pick.databinding.ItemRecipeBinding;
@@ -34,10 +35,23 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
     ItemRecipeBinding binding;
     CustomHandler handler;
 
+    ArrayList<Tag> tagList = new ArrayList<Tag>();
+
 
     public SummaryAdapter(Context context, ArrayList<RecipeReceive> recipes) {
         this.context = context;
         this.recipes = recipes;
+
+        if(tagList.size()==0) {
+            tagList.add(new Tag(5, "#941100","달달한"));
+            tagList.add(new Tag(6, "#521B93","술맛이강한"));
+            tagList.add(new Tag(7, "#d4fb79","상큼한"));
+            tagList.add(new Tag(8, "#ffffff","깔끔한"));
+            tagList.add(new Tag(9, "#008f00","가벼운"));
+            tagList.add(new Tag(10, "#ff2600","탄산이있는"));
+            tagList.add(new Tag(11, "#ff2600","도수가높은"));
+            tagList.add(new Tag(12, "#005493","부드러운"));
+        }
     }
 
     @NonNull
@@ -60,7 +74,11 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
 //        holder.summary_image1.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review1.setText(recipe.getIntro());
         holder.summary_tag_recycler_view1.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-//        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+        ArrayList<Tag> tmp_tags = new ArrayList<>();
+        for( int tag : recipe.getTags()) {
+            tmp_tags.add(tagList.get(tag-5));
+        }
+        holder.summary_tag_recycler_view1.setAdapter(new RecipeTagAdapter(context, tmp_tags));
 
         // TODO Tag 받야와야 함
         holder.item_recipe1.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +103,14 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         holder.summary_review2.setText(recipe2.getIntro());
 
         holder.summary_tag_recycler_view2.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-//        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, recipe.getTags()));
+
+        ArrayList<Tag> tmp_tags2 = new ArrayList<>();
+        for( int tag : recipe2.getTags()) {
+            tmp_tags2.add(tagList.get(tag-5));
+        }
+
+
+        holder.summary_tag_recycler_view2.setAdapter(new RecipeTagAdapter(context, tmp_tags2));
 
         holder.item_recipe2.setOnClickListener(new View.OnClickListener() {
             @Override
