@@ -8,11 +8,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.RetrofitService;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 
@@ -20,9 +26,16 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
 
     Context context;
     ArrayList<Product> products;
-    public BaseAdapter(Context context, ArrayList<Product> products) {
+    MainViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+    BottomSheetDialogFragment bottomSheetDialogFragment;
+    RecommendViewPagerAdapter adapter;
+    public BaseAdapter(Context context, ArrayList<Product> products, BottomSheetDialogFragment bottomSheetDialogFragment, RecommendViewPagerAdapter adapter) {
         this.context = context;
         this.products = products;
+        this.bottomSheetDialogFragment = bottomSheetDialogFragment;
+        viewModel = new ViewModelProvider((ViewModelStoreOwner) context, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        this.adapter = adapter;
     }
     @NonNull
     @Override
@@ -38,6 +51,15 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
         Product product = products.get(position);
         holder.profileImage.setImageResource(product.getPicture());
         holder.nameTextView.setText(product.getCompanyName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.getMyBaseList().add(product);
+                adapter.notifyDataSetChanged();
+                bottomSheetDialogFragment.dismiss();
+            }
+        });
     }
 
     @Override

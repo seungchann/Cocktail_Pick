@@ -22,10 +22,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     Context context;
     int selected_base;
     ArrayList<Product> products;
+    RecommendViewPagerAdapter adapter;
 
-    public BottomSheetDialog(Context context, ArrayList<Product> products) {
+    public BottomSheetDialog(Context context, ArrayList<Product> products, RecommendViewPagerAdapter adapter) {
         this.context = context;
         this.products = products;
+        this.adapter = adapter;
     }
 
     @Nullable
@@ -35,7 +37,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
 
         recyclerView = view.findViewById(R.id.add_base_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(new BaseAdapter(context, products));
+        recyclerView.setAdapter(new BaseAdapter(context, products, this, adapter));
 
         return view;
     }
