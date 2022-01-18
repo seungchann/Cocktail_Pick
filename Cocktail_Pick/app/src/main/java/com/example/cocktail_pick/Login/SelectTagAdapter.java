@@ -63,6 +63,7 @@ public class SelectTagAdapter extends RecyclerView.Adapter<SelectTagAdapter.View
 
         if (tags.size()-1 == position*3) {
             holder.card2.setVisibility(View.INVISIBLE);
+            holder.card3.setVisibility(View.INVISIBLE);
             return;
         }
 

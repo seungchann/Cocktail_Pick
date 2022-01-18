@@ -41,7 +41,10 @@ public class AddRecipeAdapter extends RecyclerView.Adapter<AddRecipeAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.order.setText(position + 1 + ". ");
-        holder.recipe_frame.removeAllViews();
+        if (recipes.get(position).getParent() != null) {
+            ((ViewGroup)recipes.get(position).getParent()).removeView(recipes.get(position));
+        }
+
         holder.recipe_frame.addView(recipes.get(position));
     }
 

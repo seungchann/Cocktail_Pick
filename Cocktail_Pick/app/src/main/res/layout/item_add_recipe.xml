@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background"
-    android:padding="15dp">
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp">
 
     <TextView
         android:id="@+id/order_tv"
@@ -12,16 +13,28 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:text="1. " />
 
     <LinearLayout
         android:id="@+id/add_recipe_frame"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"/>
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/font_custom"-->
+<!--            android:textSize="20sp"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:hint="안녕하세요"/>-->
+    </LinearLayout>
 
 <!--    <EditText-->
-<!--        android:id="@+id/editTextTextPersonName"-->
+<!--        android:id="@+id/add_recipe_et"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_weight="1"-->

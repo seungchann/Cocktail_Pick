@@ -17,17 +17,16 @@ import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.R;
 import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomTagDialog {
     Context context;
-    Tag[] selected_tags;
+    ArrayList<Tag> selected_tags;
     HomeTabViewModel viewModel;
     RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
-    public CustomTagDialog(Context context, Tag[] tags) {
+    public CustomTagDialog(Context context, ArrayList<Tag> tags) {
         this.context = context;
         selected_tags = tags;
     }
@@ -50,7 +49,6 @@ public class CustomTagDialog {
 //        viewModel.getTagDataList().observe(((CreateRecipeActivity)context).getViewLifecycleOwner(), new Observer<List<Tag>>() {
 //            @Override
 //            public void onChanged(List<Tag> tags) {
-////                Log.d(TAG, tags.get(0).getTaste());
 //                select_tag_recycler_view.setAdapter(new SelectTagAdapter(context, (ArrayList<Tag>) tags, selected_tags));
 //            }
 //        });

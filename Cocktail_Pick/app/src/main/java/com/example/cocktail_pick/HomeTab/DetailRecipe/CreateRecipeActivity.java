@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -55,7 +56,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
     final float ONZ_ML = (float) 29.5735;
     CustomImage customImage;
     ArrayList<EditText> recipes;
-    Tag[] selected_tags;
+    ArrayList<Tag> selected_tags;
+    AddRecipeAdapter addRecipeAdapter;
 
     public class CustomImage {
         String glass;
@@ -95,13 +97,11 @@ public class CreateRecipeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Context context = this;
 
-        selected_tags = new Tag[2];
-        selected_tags[0] = null;
-        selected_tags[1] = null;
+        selected_tags = new ArrayList<>();
         recipes = new ArrayList<>();
         recyclerView = binding.addStepRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AddRecipeAdapter addRecipeAdapter = new AddRecipeAdapter(this, recipes);
+        addRecipeAdapter = new AddRecipeAdapter(this, recipes);
         recyclerView.setAdapter(addRecipeAdapter);
 
         base_oz_ml = binding.addBaseOzMl;
@@ -140,11 +140,14 @@ public class CreateRecipeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText editText = new EditText(context);
                 editText.setTextColor(Color.WHITE);
-                editText.setBackgroundResource(R.color.background);
-                editText.setTextSize(100);
-//                editText.setGravity(Gravity.CENTER);
+                editText.setHintTextColor(Color.GRAY);
+                editText.setHint("레시피를 작성해주세요");
+                editText.setGravity(Gravity.BOTTOM);
+//                editText.setBackgroundResource(R.color.transparent);
+                editText.setBackgroundColor(getResources().getColor(R.color.transparent));
                 editText.setSingleLine();
-                ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                lparams.gravity = Gravity.BOTTOM;
                 editText.setLayoutParams(lparams);
                 recipes.add(editText);
                 addRecipeAdapter.setRecipes(recipes);
@@ -233,10 +236,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 //                selected_base;
 //                customImage
 
-                String recipe_string = "";
-                for (EditText recipe : recipes) {
-                    recipe_string += recipe.getText().toString() + "\n";
-                }
+
             }
         });
     }
