@@ -38,7 +38,6 @@ data class Recipe (
     @SerializedName("cocktail_name")
     var cocktailName: String,
     @SerializedName("cocktail_color")
-    var cocktailName: String,
     var glass: String,
     var ice: Int,
     @SerializedName("garnish_first")

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.HomeTab.HomeTabFragment;
 import com.example.cocktail_pick.Main.MainActivity;
+import com.example.cocktail_pick.Main.RecipeFragment;
 import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
@@ -49,7 +50,7 @@ public class CustomSuggestionsAdapter extends SuggestionsAdapter<Product, Custom
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) context).replaceView(new HomeTabFragment());
+                ((MainActivity) context).replaceView(new RecipeFragment());
             }
         });
     }
