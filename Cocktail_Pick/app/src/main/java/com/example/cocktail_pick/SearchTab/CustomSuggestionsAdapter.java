@@ -50,7 +50,7 @@ public class CustomSuggestionsAdapter extends SuggestionsAdapter<Product, Custom
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) context).replaceView(new RecipeFragment());
+                ((MainActivity) context).replaceView(new RecipeFragment(0));
             }
         });
     }

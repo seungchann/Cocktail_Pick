@@ -79,13 +79,8 @@ public class SearchTabFragment extends Fragment {
         rootView.findViewById(R.id.base1_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.loadBaseBasedRecipe("진");
-                viewModel.getBaseBasedRecipeList().observe(getViewLifecycleOwner(), new Observer<List<RecipeReceive>>() {
-                    @Override
-                    public void onChanged(List<RecipeReceive> recipeReceives) {
-                        ((MainActivity) getContext()).replaceView(new RecipeFragment());
-                    }
-                });
+                viewModel.loadBaseBasedRecipe("VODKA");
+                ((MainActivity) getContext()).replaceView(new RecipeFragment(1));
 
             }
         });
