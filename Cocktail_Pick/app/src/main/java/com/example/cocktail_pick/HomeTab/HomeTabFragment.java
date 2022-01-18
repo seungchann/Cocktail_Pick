@@ -31,6 +31,7 @@ import com.example.cocktail_pick.RecipeReceive;
 import com.example.cocktail_pick.RetrofitService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HomeTabFragment extends Fragment {
@@ -76,11 +77,41 @@ public class HomeTabFragment extends Fragment {
 
 
         testbtn = rootView.findViewById(R.id.testBtn);
+
+        List<Integer> tagstest = new ArrayList<Integer>(Arrays.asList(5, 6));
+        Recipe test = new Recipe(3
+                , "이건 테스트"
+                ,"테스트 칵테일"
+                , "칵테일 글라스"
+                , 3
+                , "체리"
+                , "자몽"
+                , "#f9eeba"
+                , "이건 글이에요"
+                , tagstest
+                , "위스키"
+                , 3.0f
+                , "오렌지 쥬스"
+                , 3
+                , "리퀴르"
+                , 2
+                , "예시"
+                , 2
+                , "스텝"
+        );
+
         testbtn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                createCustomDialog();
+                viewModel.addRecipe(test);
+                viewModel.getRecipePost().observe(getViewLifecycleOwner(), new Observer<Recipe>() {
+
+                    @Override
+                    public void onChanged(Recipe recipe) {
+
+                    }
+                });
             }
         });
 

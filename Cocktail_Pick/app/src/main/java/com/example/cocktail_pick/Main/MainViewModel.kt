@@ -13,9 +13,9 @@ import retrofit2.Response
 class MainViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "MainViewModel"
-    private val BASE = "BASE BASED"
     lateinit var currentUserEmail: String
     lateinit var base: String
+    var recipePost = MutableLiveData<Recipe>()
     var currentUser = MutableLiveData<List<Member>>()
     var tagBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
     var baseBasedRecipeList = MutableLiveData<List<RecipeReceive>>()
@@ -77,12 +77,26 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
                 call: Call<List<RecipeReceive>>,
                 response: Response<List<RecipeReceive>>
             ) {
-                Log.d(BASE, "베이스 기반 레시피가 로드되었습니다.")
+                Log.d(TAG, "베이스 기반 레시피가 로드되었습니다.")
                 baseBasedRecipeList.postValue(response.body())
             }
 
             override fun onFailure(call: Call<List<RecipeReceive>>, t: Throwable) {
-                Log.e(BASE, t.message.toString())
+                Log.e(TAG, t.message.toString())
+            }
+        })
+    }
+
+    fun addRecipe(recipe: Recipe) {
+        val response = repository.addRecipe(recipe)
+        response.enqueue(object : Callback<Recipe> {
+            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                Log.d(TAG, "레시피를 성공적으로 포스트 하였습니다.")
+                recipePost.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                Log.e(TAG, "레시피 포스팅에 실패하였습니다 : ${t.message.toString()}")
             }
         })
     }
