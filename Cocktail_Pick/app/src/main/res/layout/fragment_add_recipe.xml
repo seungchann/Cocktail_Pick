@@ -152,7 +152,8 @@
                         android:id="@+id/add_base_onz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:hint="1"
+                        android:textColorHint="gray"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:inputType="number"
@@ -198,7 +199,8 @@
                         android:id="@+id/add_liqueur_onz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:hint="1"
+                        android:textColorHint="@color/gray"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:inputType="number"
@@ -209,6 +211,52 @@
                         app:layout_constraintTop_toTopOf="parent" />
                     <TextView
                         android:id="@+id/add_liqueur_oz_ml"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=" oz"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow>
+                    <EditText
+                        android:id="@+id/add_juice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:hint="Juice 이름을 입력해주세요"
+                        android:fontFamily="@font/font_custom"
+                        android:textColorHint="@color/gray"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/add_juice_onz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="1"
+                        android:textColorHint="@color/gray"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:fontFamily="@font/font_custom"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/add_juice_oz_ml"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -244,7 +292,8 @@
                         android:id="@+id/add_etc_onz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:hint="1"
+                        android:textColorHint="gray"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:inputType="number"

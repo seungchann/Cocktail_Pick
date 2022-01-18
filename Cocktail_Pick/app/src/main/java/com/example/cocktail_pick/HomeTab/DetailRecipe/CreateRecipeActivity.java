@@ -61,8 +61,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<String> steps;
-    TextView base_oz_ml, liqueur_oz_ml, etc_oz_ml;
-    EditText cocktail_name, comment, posting, base_onz, liqueur_onz, etc_onz, liqueur, etc;
+    TextView base_oz_ml, liqueur_oz_ml, etc_oz_ml, juice_oz_ml;
+    EditText cocktail_name, comment, posting, base_onz, liqueur_onz, etc_onz, liqueur, etc, juice, juice_onz;
     Spinner base;
     Button onz_btn, ml_btn, select_tag, add_complete_btn, add_recipe_btn;
     ItemCustomImageBinding detail_custom;
@@ -158,6 +158,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
         base_onz = binding.addBaseOnz;
         liqueur = binding.addLiqueur;
         liqueur_onz = binding.addLiqueurOnz;
+        juice_oz_ml = binding.addJuiceOzMl;
+        juice = binding.addJuice;
+        juice_onz = binding.addJuiceOnz;
         etc = binding.addEtc;
         etc_onz = binding.addEtcOnz;
         tag1 = binding.detailFirstTag;
@@ -234,6 +237,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 ml_btn.setTextColor(Color.WHITE);
 
                 liqueur_oz_ml.setText(" oz");
+                juice_oz_ml.setText(" oz");
                 base_oz_ml.setText(" oz");
                 etc_oz_ml.setText(" oz");
 
@@ -250,6 +254,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 ml_btn.setTextColor(Color.BLACK);
 
                 liqueur_oz_ml.setText(" ml");
+                juice_oz_ml.setText(" ml");
                 base_oz_ml.setText(" ml");
                 etc_oz_ml.setText(" ml");
 
@@ -266,9 +271,16 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 String cocktail_name_string = cocktail_name.getText().toString();
                 String comment_string = comment.getText().toString();
                 String posting_string = posting.getText().toString();
+
+                if (base_onz.getText().toString() == "") base_onz.setText("0");
+                if (juice_onz.getText().toString() == "") juice_onz.setText("0");
+                if (liqueur_onz.getText().toString() == "") liqueur_onz.setText("0");
+                if (etc_onz.getText().toString() == "") etc_onz.setText("0");
+
                 float base_onz_float = Float.parseFloat(base_onz.getText().toString());
                 float liqueur_onz_float = Float.parseFloat(liqueur_onz.getText().toString());
                 float etc_onz_float = Float.parseFloat(etc_onz.getText().toString());
+                float juice_onz_float = Float.parseFloat(juice_onz.getText().toString());
 
                 if (ONZ_FLAG == false) {
                     base_onz_float /= ONZ_ML;
@@ -278,10 +290,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
                 String liqueur_string = liqueur.getText().toString();
                 String etc_string = etc.getText().toString();
+                String juice_string = juice.getText().toString();
 
-                // 아래 두개도 같이 저장하면 됨!
-//                selected_base;
-//                customImage
+
                 List<Integer> selected_tags_int = new ArrayList<>();
                 for (Tag tag : selected_tags) {
                     selected_tags_int.add(tag.getId());
@@ -312,8 +323,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
                                 ,selected_tags_int
                                 ,selected_base
                                 , finalBase_onz_float
-                                ,"juice"
-                                ,1
+                                ,juice_string
+                                ,juice_onz_float
                                 ,liqueur_string
                                 , finalLiqueur_onz_float
                                 ,etc_string
