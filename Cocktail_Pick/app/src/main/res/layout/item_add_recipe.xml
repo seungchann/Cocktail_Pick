@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp">
+
+    <TextView
+        android:id="@+id/order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="1. " />
+
+    <LinearLayout
+        android:id="@+id/add_recipe_frame"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/font_custom"-->
+<!--            android:textSize="20sp"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:hint="안녕하세요"/>-->
+    </LinearLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/add_recipe_et"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:fontFamily="@font/font_custom"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="@color/transparent"-->
+<!--        android:textCursorDrawable="@drawable/text_cursor"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:text="술을 만드는 레시피 입니다." />-->
+</LinearLayout>

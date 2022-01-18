@@ -11,5 +11,6 @@ class MainRepository constructor(private val retrofitService: RetrofitService) {
     fun loadTagData() = retrofitService.loadTagData()
     fun loadTagBasedRecipe() = retrofitService.loadTagBasedRecipe()
     fun loadBaseBasedRecipe(base: String) = retrofitService.loadBaseBasedRecipe(base)
+    fun addRecipe(recipe: Recipe) = retrofitService.addRecipe(recipe)
 
 }
