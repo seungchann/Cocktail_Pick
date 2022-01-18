@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Product> products;
+    ArrayList<Product> products, tmp_mine;
     MainViewModel viewModel;
     RetrofitService retrofitService = RetrofitService.Companion.getInstance();
     BottomSheetDialogFragment bottomSheetDialogFragment;
@@ -36,6 +36,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
         this.bottomSheetDialogFragment = bottomSheetDialogFragment;
         viewModel = new ViewModelProvider((ViewModelStoreOwner) context, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
         this.adapter = adapter;
+        tmp_mine = (ArrayList<Product>) viewModel.getMyBaseList();
     }
     @NonNull
     @Override
@@ -55,7 +56,9 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.getMyBaseList().add(product);
+                tmp_mine.add(product);
+                viewModel.setMyBaseList(tmp_mine);
+
                 adapter.notifyDataSetChanged();
                 bottomSheetDialogFragment.dismiss();
             }

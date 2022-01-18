@@ -59,18 +59,18 @@ public class RecommendTabFragment extends Fragment {
         recommend_recycler_view = rootView.findViewById(R.id.recommend_recycler_view);
         recommend_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        summary_adapter = new SummaryAdapter(getActivity(), recommendRecipes);
-        recommend_recycler_view.setAdapter(summary_adapter);
+//        recommend_recycler_view.setAdapter(summary_adapter);
 
         addBtn = rootView.findViewById(R.id.add_buying_btn);
         removeBtn = rootView.findViewById(R.id.remove_buying_btn);
 
-        for (Product cocktail : cocktails) {
-            for (Product my_cocktail : my_cocktails) {
-                if (cocktail.getCompanyName().equals(my_cocktail.getCompanyName())) {
-                    cocktails.remove(cocktail);
-                }
-            }
-        }
+//        for (Product cocktail : cocktails) {
+//            for (Product my_cocktail : my_cocktails) {
+//                if (cocktail.getCompanyName().equals(my_cocktail.getCompanyName())) {
+//                    cocktails.remove(cocktail);
+//                }
+//            }
+//        }
 
         viewPager = rootView.findViewById(R.id.buy_view_pager);
         buying_adapter = new RecommendViewPagerAdapter(getActivity(), my_cocktails);

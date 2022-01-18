@@ -13,11 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.Data.Cocktail;
+import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.RetrofitService;
 
 import java.util.ArrayList;
 
@@ -26,11 +32,20 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
     Context context;
     ArrayList<Product> cocktails;
     public boolean cancel_flag = false;
+    MainViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
 
     public RecommendViewPagerAdapter(Context context, ArrayList<Product> cocktails) {
         this.context = context;
         this.cocktails = cocktails;
+        viewModel = new ViewModelProvider((ViewModelStoreOwner) context, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
+        this.cocktails = (ArrayList<Product>) viewModel.getMyBaseList();
     }
+
+    public void setCocktails(ArrayList<Product> cocktails) {
+        this.cocktails = cocktails;
+    }
+
     @NonNull
     @Override
     public ViewHolderPage onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +55,7 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPage holder, int position) {
+        cocktails = (ArrayList<Product>) viewModel.getMyBaseList();
         position *= 6;
         int i = 0;
         for (i = 0; i < 6; i++) {
@@ -80,7 +96,7 @@ public class RecommendViewPagerAdapter extends RecyclerView.Adapter<RecommendVie
 
     @Override
     public int getItemCount() {
-        return (cocktails.size()+5)/6;
+        return (viewModel.getMyBaseList().size() + 5)/6;
     }
 
     class ViewHolderPage extends RecyclerView.ViewHolder{
