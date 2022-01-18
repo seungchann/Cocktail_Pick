@@ -55,7 +55,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         final RecipeReceive recipe = recipes.get(position*2);
         holder.summary_recipe_name1.setText(recipe.getCocktailName());
 
-        handler.setGlass(recipe.getGlass(), recipe.getIce(), recipe.getGarnishFirst(), recipe.getGarnishSecond(), "#f9eeba", holder.firstImage);
+        handler.setGlass(recipe.getGlass(), recipe.getIce(), recipe.getGarnishFirst(), recipe.getGarnishSecond(), recipe.getCocktailColor(), holder.firstImage);
 
 //        holder.summary_image1.setImageResource(R.drawable.jack_danial); // TODO
         holder.summary_review1.setText(recipe.getIntro());
@@ -78,7 +78,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         }
 
         final RecipeReceive recipe2 = recipes.get(position*2+1);
-        handler.setGlass(recipe2.getGlass(), recipe2.getIce(), recipe2.getGarnishFirst(), recipe2.getGarnishSecond(), "#f9eeba", holder.secondImage);
+        handler.setGlass(recipe2.getGlass(), recipe2.getIce(), recipe2.getGarnishFirst(), recipe2.getGarnishSecond(), recipe2.getCocktailColor(), holder.secondImage);
 
         holder.summary_recipe_name2.setText(recipe2.getCocktailName());
 //        holder.summary_image2.setImageResource(R.drawable.jack_danial); // TODO
