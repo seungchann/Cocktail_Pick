@@ -1,6 +1,7 @@
 package com.example.cocktail_pick.HomeTab.DetailRecipe;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -21,11 +22,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cocktail_pick.BaseReceive;
 import com.example.cocktail_pick.HomeTab.CustomHandler;
 import com.example.cocktail_pick.Main.MainViewModel;
@@ -58,6 +61,7 @@ public class DetailRecipeActivity extends AppCompatActivity {
     ItemCustomImageBinding detail_custom;
     boolean ONZ_FLAG;
     final float ONZ_ML = (float) 29.5735;
+    Context context = this;
 
     MainViewModel viewModel;
     RetrofitService retrofitService = RetrofitService.Companion.getInstance();
@@ -142,8 +146,14 @@ public class DetailRecipeActivity extends AppCompatActivity {
             }
         });
 //        name.setText();
-//        profile. glide..
-
+        viewModel.loadCurrentAccount();
+        viewModel.getCurrentUser().observe((LifecycleOwner) context, new Observer<List<UserReceive>>() {
+            @Override
+            public void onChanged(List<UserReceive> userReceives) {
+                Glide.with(context).load(userReceives.get(0).getProfileURL()).into(profile);
+                name.setText(userReceives.get(0).getUserName());
+            }
+        });
         ImageView tag1_circle = tag1.tagCircleSmall;
         TextView tag1_text = tag1.tagTextSmall;
         ImageView tag2_circle = tag2.tagCircleSmall;

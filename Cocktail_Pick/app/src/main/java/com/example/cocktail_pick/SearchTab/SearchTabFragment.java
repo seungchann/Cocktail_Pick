@@ -18,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail_pick.Main.MainActivity;
 import com.example.cocktail_pick.Main.MainViewModel;
 import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.Main.RecipeFragment;
 import com.example.cocktail_pick.MainRepository;
 import com.example.cocktail_pick.Product;
 import com.example.cocktail_pick.R;
@@ -81,7 +83,7 @@ public class SearchTabFragment extends Fragment {
                 viewModel.getBaseBasedRecipeList().observe(getViewLifecycleOwner(), new Observer<List<RecipeReceive>>() {
                     @Override
                     public void onChanged(List<RecipeReceive> recipeReceives) {
-
+                        ((MainActivity) getContext()).replaceView(new RecipeFragment());
                     }
                 });
 
