@@ -156,6 +156,7 @@ public class HomeTabFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CreateRecipeActivity.class);
+//                intent.putExtra("email",viewModel.getCurrentUserEmail());
                 startActivity(intent);
             }
         });

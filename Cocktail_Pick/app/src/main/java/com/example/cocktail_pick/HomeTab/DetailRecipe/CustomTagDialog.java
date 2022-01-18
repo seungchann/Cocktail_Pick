@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cocktail_pick.HomeTab.HomeTabViewModel;
 import com.example.cocktail_pick.Login.LoginViewModel;
 import com.example.cocktail_pick.Login.SelectTagAdapter;
 import com.example.cocktail_pick.Main.MainViewModel;

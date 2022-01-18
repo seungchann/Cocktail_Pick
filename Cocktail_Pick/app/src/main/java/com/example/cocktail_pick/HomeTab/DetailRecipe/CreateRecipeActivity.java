@@ -2,6 +2,7 @@ package com.example.cocktail_pick.HomeTab.DetailRecipe;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -25,13 +26,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail_pick.Data.Base;
 import com.example.cocktail_pick.HomeTab.CustomDialog;
 import com.example.cocktail_pick.HomeTab.CustomHandler;
+import com.example.cocktail_pick.Main.MainActivity;
+import com.example.cocktail_pick.Main.MainViewModel;
+import com.example.cocktail_pick.Main.MainViewModelFactory;
+import com.example.cocktail_pick.MainRepository;
+import com.example.cocktail_pick.Member;
 import com.example.cocktail_pick.R;
+import com.example.cocktail_pick.Recipe;
+import com.example.cocktail_pick.RetrofitService;
 import com.example.cocktail_pick.Tag;
 import com.example.cocktail_pick.databinding.ActivityDetailRecipeBinding;
 import com.example.cocktail_pick.databinding.FragmentAddRecipeBinding;
@@ -40,6 +51,7 @@ import com.example.cocktail_pick.databinding.ItemTagSmallBinding;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreateRecipeActivity extends AppCompatActivity {
 
@@ -62,6 +74,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
     ArrayList<Tag> selected_tags;
     AddRecipeAdapter addRecipeAdapter;
     ItemTagSmallBinding tag1, tag2;
+    MainViewModel viewModel;
+    RetrofitService retrofitService = RetrofitService.Companion.getInstance();
+    Context context;
 
     public void setSelectedTags(ArrayList<Tag> selected_tags) {
         this.selected_tags = selected_tags;
@@ -122,8 +137,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
         binding = FragmentAddRecipeBinding.inflate(getLayoutInflater());
         handler = new CustomHandler();
         setContentView(binding.getRoot());
-        Context context = this;
+        viewModel = new ViewModelProvider(this, new MainViewModelFactory(new MainRepository(retrofitService))).get(MainViewModel.class);
 
+        customImage = new CustomImage();
+        Intent intent = new Intent();
+//        String email = intent.getStringExtra("email");
+//        viewModel.setCurrentUserEmail(email);
+        context = this;
         selected_tags = new ArrayList<>();
         recipes = new ArrayList<>();
         recyclerView = binding.addStepRecyclerView;
@@ -264,8 +284,56 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 // 아래 두개도 같이 저장하면 됨!
 //                selected_base;
 //                customImage
-//                selected_tags
+                List<Integer> selected_tags_int = new ArrayList<>();
+                for (Tag tag : selected_tags) {
+                    selected_tags_int.add(tag.getId());
+                }
 
+                String recipe_string = "";
+                for (EditText recipe_et : recipes) {
+                    recipe_string += recipe_et.getText().toString() + "\n";
+                }
+
+                viewModel.loadUserAccount();
+                String finalRecipe_string = recipe_string;
+                float finalEtc_onz_float = etc_onz_float;
+                float finalLiqueur_onz_float = liqueur_onz_float;
+                float finalBase_onz_float = base_onz_float;
+                viewModel.getCurrentUser().observe((LifecycleOwner) context, new Observer<List<Member>>() {
+                    @Override
+                    public void onChanged(List<Member> members) {
+                        Recipe recipe = new Recipe(4
+                                ,comment_string
+                                ,cocktail_name_string
+                                ,customImage.glass
+                                ,customImage.ice
+                                ,customImage.garnishFirst
+                                ,customImage.garnishSecond
+                                ,customImage.color
+                                ,posting_string
+                                ,selected_tags_int
+                                ,selected_base
+                                , finalBase_onz_float
+                                ,"juice"
+                                ,1
+                                ,liqueur_string
+                                , finalLiqueur_onz_float
+                                ,etc_string
+                                , finalEtc_onz_float
+                                , finalRecipe_string
+                                );
+
+                        viewModel.addRecipe(recipe);
+//
+                    }
+                });
+                  viewModel.getRecipePost().observe((LifecycleOwner) context, new Observer<Recipe>() {
+
+                    @Override
+                    public void onChanged(Recipe recipe) {
+
+                    }
+                });
 
             }
         });
@@ -273,7 +341,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
     private void createCustomDialog() {
         Dialog dialog;
-        customImage = new CustomImage();
+
         dialog = new CustomDialog(this, this.getSupportFragmentManager(), customImage);
         dialog.show();
         dialog.getWindow().setLayout(1000, 1500);

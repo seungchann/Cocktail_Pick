@@ -13,7 +13,8 @@ import retrofit2.Response
 class MainViewModel constructor(private val repository: MainRepository) : ViewModel() {
 
     private val TAG = "MainViewModel"
-    lateinit var currentUserEmail: String
+//    lateinit var currentUserEmail: String
+    var currentUserEmail = "dycha0430@gmail.com"
     lateinit var base: String
     var recipePost = MutableLiveData<Recipe>()
     var currentUser = MutableLiveData<List<Member>>()
@@ -98,19 +99,6 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
 
             override fun onFailure(call: Call<Recipe>, t: Throwable) {
                 Log.e(TAG, "레시피 포스팅에 실패하였습니다 : ${t.message.toString()}")
-            }
-        })
-    }
-
-    fun loadTagData() {
-        val response = repository.loadTagData()
-        response.enqueue(object : Callback<List<Tag>> {
-            override fun onResponse(call: Call<List<Tag>>, response: Response<List<Tag>>) {
-                tagDataList.postValue(response.body())
-            }
-
-            override fun onFailure(call: Call<List<Tag>>, t: Throwable) {
-                Log.e(TAG, "TAG 로드에 실패했습니다.")
             }
         })
     }
