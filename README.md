@@ -1,8 +1,8 @@
 # Cocktail Pick (음주의 픽)
 ## 팀원
-UNIST 컴퓨터공학과 [김승찬](https://github.com/seungchann)  
-KAIST 전산학과 [이주현](https://github.com/juhyuns)  
-한양대 컴퓨터소프트웨어학과 [차다윤](https://github.com/dycha0430)  
+[김승찬](https://github.com/seungchann)  
+[이주현](https://github.com/juhyuns)  
+[차다윤](https://github.com/dycha0430)  
 ## Overview
 > 자신의 칵테일 레시피를 공유하고, 관심있는 태그와 자신이 가지고 있는 술을 통해 레시피를 추천받는 칵테일 레시피 앱
 ## Backend
